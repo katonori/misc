@@ -28,7 +28,7 @@ vnoremap <silent> <leader>g "vy:exec ":vimgrep /" . escape(getreg('v'), '\/') . 
 vnoremap <C-R> y:<C-R>=substitute(@", "\n", "", "g")<CR><CR>
 
 " grep
-nnoremap <leader>g :vimgrep <C-R><C-W> %<CR>:let @/="<C-R><C-W>"<CR>:set hlsearch<CR>
+nnoremap <leader>g :vimgrep /<C-R><C-W>/j %<CR>:let @/="<C-R><C-W>"<CR>:set hlsearch<CR>
 nnoremap gG :vimgrep /<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')/j %<CR>
 
 "
@@ -51,7 +51,7 @@ nnoremap <C-G>r :Gtags -r <C-R><C-W><CR>
 nnoremap <C-G>d :Gtags <C-R><C-W><CR>
 nnoremap <C-G>g :Gtags -g <C-R><C-W><CR>
 
-nnoremap <leader>c :cclose
+nnoremap <leader>c :cclose<cr>
 
 "
 " key maps
