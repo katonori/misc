@@ -1,0 +1,76 @@
+cnoremap <C-D> <Del>
+cnoremap <C-B> <Left>
+cnoremap <C-F> <Right>
+cnoremap <C-A> <Home>
+
+nnoremap <C-N> :next<CR>
+nnoremap <C-P> :prev<CR>
+nnoremap <SPACE> $
+nnoremap * :let @/="\\<<C-R><C-W>\\>"<CR>:set hlsearch<CR>
+nnoremap gn :cnext<CR>
+nnoremap gp :cprev<CR>
+nnoremap <Leader><C-M> :make<CR>
+nnoremap <C-W>C :cclose<CR>
+nnoremap <Leader>c :set cursorcolumn!<CR>
+nnoremap <C-E> 4<C-E>
+nnoremap <C-Y> 4<C-Y>
+nnoremap <C-J> 8j
+nnoremap <C-K> 8k
+"nnoremap <C-H> 8h
+"nnoremap <C-L> 8l
+nnoremap <leader>C : <C-R><C-W><Home>
+
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+vnoremap <silent> <leader>g "vy:exec ":vimgrep /" . escape(getreg('v'), '\/') . "/j %"<CR>
+vnoremap <C-R> y:<C-R>=substitute(@", "\n", "", "g")<CR><CR>
+
+" grep
+nnoremap <leader>g :vimgrep <C-R><C-W> %<CR>:let @/="<C-R><C-W>"<CR>:set hlsearch<CR>
+nnoremap gG :vimgrep /<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')/j %<CR>
+
+"
+" key maps for quickfix
+"
+autocmd! FileType qf
+autocmd  FileType qf nnoremap <buffer> <CR> <CR>zz:wincmd p<CR>
+autocmd  FileType qf nnoremap <buffer> q :wincmd p<CR>:cclose<CR>
+
+"
+" key maps for python mode
+"
+autocmd! FileType python
+autocmd  FileType python nnoremap <leader>l :PyLint<CR>
+
+"
+" gtags
+"
+nnoremap <C-G>r :Gtags -r <C-R><C-W><CR>
+nnoremap <C-G>d :Gtags <C-R><C-W><CR>
+nnoremap <C-G>g :Gtags -g <C-R><C-W><CR>
+
+nnoremap <leader>c :cclose
+
+"
+" key maps
+"
+nnoremap <unique> <silent> <leader>d :CxxtagsOpenDecl<CR>
+nnoremap <unique> <silent> <leader>r :CxxtagsListRefs<CR>
+nnoremap <unique> <silent> <leader>D :CxxtagsOpenDef<CR>
+nnoremap <unique> <silent> <leader>q :CxxtagsCloseMsgBuf<CR>
+nnoremap <unique> <silent> <leader>o :CxxtagsListOverride<CR>
+nnoremap <unique> <silent> <leader>O :CxxtagsListOverriden<CR>
+nnoremap <unique> <silent> <leader>t :CxxtagsListTypeInfo<CR>
+nnoremap <unique> <silent> <leader>u :CxxtagsUpdateDbFile<CR>
+
+"
+" ctrlp
+"
+let g:ctrlp_map = '<leader>pp'
+nnoremap <leader>pm :CtrlPMRUFiles<CR>
+
+"
+" ps mode
+"
+autocmd FileType ps nnoremap <buffer> <silent> K :PsKillLine<CR>
+autocmd FileType ps vnoremap <buffer> <silent> K :PsKillAllLines<CR>
+autocmd FileType ps nnoremap <buffer> <silent> <C-K> 8k

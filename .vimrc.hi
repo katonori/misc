@@ -1,0 +1,29 @@
+"
+" highlight settings
+"
+syntax on
+colorscheme default
+set bg=dark
+" overwrite settings
+hi CursorLine   term=reverse cterm=bold ctermbg=darkgray
+hi Statement    term=bold cterm=bold ctermfg=lightred gui=bold
+"hi StatusLine   cterm=bold ctermfg=red ctermbg=white cterm=none
+hi PreProc ctermfg=yellow
+hi Include ctermfg=yellow
+hi Define ctermfg=yellow
+hi Macro ctermfg=yellow
+hi LineNr ctermfg=blue
+
+"
+" default syntax highlight
+"
+syn match	String0	'".*"'
+syn match	String1	"'.*'"
+syn match	Number	"\d\+"
+syn match	SpecialChar "[-+/*=%&@#\$:]"
+syn match	Parrenthesis "[\[\]\{\}\(\)]"
+hi String0 ctermfg=yellow
+hi String1 ctermfg=yellow
+hi Number ctermfg=red
+hi SpecialChar ctermfg=magenta
+hi Parrenthesis ctermfg=green
