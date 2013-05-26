@@ -18,7 +18,10 @@ nnoremap <C-J> 8j
 nnoremap <C-K> 8k
 "nnoremap <C-H> 8h
 "nnoremap <C-L> 8l
-nnoremap <leader>C : <C-R><C-W><Home>
+nnoremap <leader>C : <c-r><c-w><Home>
+vnoremap <leader>C y: <c-r>"<Home>
+noremap <leader>r :%s/<c-r><c-w>/
+vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
 
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 vnoremap <silent> <leader>g "vy:exec ":vimgrep /" . escape(getreg('v'), '\/') . "/j %"<CR>
@@ -53,14 +56,14 @@ nnoremap <leader>c :cclose
 "
 " key maps
 "
-nnoremap <unique> <silent> <leader>d :CxxtagsOpenDecl<CR>
-nnoremap <unique> <silent> <leader>r :CxxtagsListRefs<CR>
-nnoremap <unique> <silent> <leader>D :CxxtagsOpenDef<CR>
-nnoremap <unique> <silent> <leader>q :CxxtagsCloseMsgBuf<CR>
-nnoremap <unique> <silent> <leader>o :CxxtagsListOverride<CR>
-nnoremap <unique> <silent> <leader>O :CxxtagsListOverriden<CR>
-nnoremap <unique> <silent> <leader>t :CxxtagsListTypeInfo<CR>
-nnoremap <unique> <silent> <leader>u :CxxtagsUpdateDbFile<CR>
+nnoremap <unique> <silent> <c-t>d :CxxtagsOpenDecl<CR>
+nnoremap <unique> <silent> <c-t>r :CxxtagsListRefs<CR>
+nnoremap <unique> <silent> <c-t>D :CxxtagsOpenDef<CR>
+nnoremap <unique> <silent> <c-t>q :CxxtagsCloseMsgBuf<CR>
+nnoremap <unique> <silent> <c-t>o :CxxtagsListOverride<CR>
+nnoremap <unique> <silent> <c-t>O :CxxtagsListOverriden<CR>
+nnoremap <unique> <silent> <c-t>t :CxxtagsListTypeInfo<CR>
+nnoremap <unique> <silent> <c-t>u :CxxtagsUpdateDbFile<CR>
 
 "
 " ctrlp
