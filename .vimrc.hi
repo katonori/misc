@@ -7,7 +7,7 @@ set bg=dark
 " overwrite settings
 hi CursorLine   term=reverse cterm=bold ctermbg=darkgray
 hi Statement    term=bold cterm=bold ctermfg=lightred gui=bold
-"hi StatusLine   cterm=bold ctermfg=red ctermbg=white cterm=none
+hi StatusLine cterm=bold ctermfg=red ctermbg=gray
 hi PreProc ctermfg=yellow
 hi Include ctermfg=yellow
 hi Define ctermfg=yellow

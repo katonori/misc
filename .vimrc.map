@@ -56,14 +56,14 @@ nnoremap <leader>c :cclose<cr>
 "
 " key maps
 "
-nnoremap <unique> <silent> <c-t>d :CxxtagsOpenDecl<CR>
-nnoremap <unique> <silent> <c-t>r :CxxtagsListRefs<CR>
-nnoremap <unique> <silent> <c-t>D :CxxtagsOpenDef<CR>
-nnoremap <unique> <silent> <c-t>q :CxxtagsCloseMsgBuf<CR>
-nnoremap <unique> <silent> <c-t>o :CxxtagsListOverride<CR>
-nnoremap <unique> <silent> <c-t>O :CxxtagsListOverriden<CR>
-nnoremap <unique> <silent> <c-t>t :CxxtagsListTypeInfo<CR>
-nnoremap <unique> <silent> <c-t>u :CxxtagsUpdateDbFile<CR>
+nnoremap <silent> <c-t>d :CxxtagsOpenDecl<CR>
+nnoremap <silent> <c-t>r :CxxtagsListRefs<CR>
+nnoremap <silent> <c-t>D :CxxtagsOpenDef<CR>
+nnoremap <silent> <c-t>q :CxxtagsCloseMsgBuf<CR>
+nnoremap <silent> <c-t>o :CxxtagsListOverride<CR>
+nnoremap <silent> <c-t>O :CxxtagsListOverriden<CR>
+nnoremap <silent> <c-t>t :CxxtagsListTypeInfo<CR>
+nnoremap <silent> <c-t>u :CxxtagsUpdateDbFile<CR>
 
 "
 " ctrlp
@@ -77,3 +77,9 @@ nnoremap <leader>pm :CtrlPMRUFiles<CR>
 autocmd FileType ps nnoremap <buffer> <silent> K :PsKillLine<CR>
 autocmd FileType ps vnoremap <buffer> <silent> K :PsKillAllLines<CR>
 autocmd FileType ps nnoremap <buffer> <silent> <C-K> 8k
+
+"
+" fugitive
+"
+autocmd! FileType gitcommit
+autocmd! FileType gitcommit nmap <c-d> :let @t=winnr()<cr>:normal D<cr>:exec @t . "wincmd w"<cr>
