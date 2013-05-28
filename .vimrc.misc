@@ -106,3 +106,4 @@ let g:errormarker_errorgroup_signhl = "Error"
 " Defines the highlighting group to use for warnings in the gui
 let g:errormarker_warninggroup_signhl = "DiffChange"
 
+command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/db"
