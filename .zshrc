@@ -17,7 +17,7 @@ setopt  hist_ignore_all_dups
 setopt  hist_reduce_blanks
 setopt  share_history
 
-alias ls="ls -F -G"
+alias ls="ls -F --color=auto"
 alias lv='lv -c'
 alias ssh='ssh -Y'
 alias vimps='ps aux | vim -c "set filetype=ps" -'
@@ -86,7 +86,8 @@ function mgrep()
     bash -c "$cmd"
 }
 
-function rgrep() {
+function rgrep()
+{
     mgrep -r $*
 }
 
