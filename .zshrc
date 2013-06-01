@@ -1,3 +1,23 @@
+PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}: %{\e[1;33m%}%~%{\e[m%}\n%# '
+
+bindkey -e
+#bindkey "^G"
+bindkey "^X^B" backward-word
+bindkey "^X^F" forward-word
+bindkey "^X^D" kill-word
+
+autoload -U compinit
+compinit -u
+
+#### history
+HISTFILE="$HOME/.zhistory"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt  hist_ignore_all_dups
+setopt  hist_reduce_blanks
+setopt  share_history
+
+alias ls="ls -F -G"
 alias lv='lv -c'
 alias ssh='ssh -Y'
 alias vimps='ps aux | vim -c "set filetype=ps" -'
@@ -5,31 +25,39 @@ alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
 alias Kill='kill -9'
-function myclewn() {
+
+function gyclewn()
+{
   \pyclewn -e vim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
 }
 
 #
 # grep wrapper for vim
 #
-function mgrep() {
+function mgrep()
+{
     isRecursive=""
     isParallel=""
     isParaRecursive=""  # specify if execute grep parallely
     argArry=($@)
-    lastArg=${argArry[$#-1]}
-    type=""
+    lastArg=${argArry[$#]} # lastArg is treated as a directory name in parallel recursive mode.
     cmdArgs=""
     cmdPrefix=""
     excludeDirs="--exclude-dir={.svn,.git}"
     excludeFiles="--exclude=*.{o,bin,a,gz,swo,swp,out,db}"
-    for (( i = 0; i < ${#argArry[@]}-1; ++i ))
+    includeFiles=""
+    for (( i = 1; i < ${#argArry[@]}; ++i ))
     do
-        arg=${argArry[$i]}
+        arg=$argArry[$i]
         case $arg in
-            "-tc") type="c";;
-            "-tt") type="t";;
-            "-to") type="o";;
+            "-tc")
+                includeFiles="--include=*.{c,cpp,h,hpp}"
+                ;;
+            "-tt")
+                ;;
+            "-to")
+                excludeFiles=""
+                ;;
             "-r")
                 isRecursive="on"
                 if [ "$isParallel" != "" ]; then
@@ -42,25 +70,19 @@ function mgrep() {
               *) cmdArgs="$cmdArgs $arg";;
         esac
     done
+    cmdArgs="$excludeDirs $excludeFiles $includeFiles $cmdArgs"
     if [ "$isParaRecursive" = "" ]; then
         cmdArgs="$cmdArgs $lastArg"
     fi
-    if [ "$isRecursive" != "" ]; then
-        cmdArgs="$excludeDirs $excludeFiles $cmdArgs"
-    fi
-    #echo "TYPE: $type"
     #echo "ARGS: $cmdArgs"
     #echo "Prefix: $cmdPrefix"
 
     # default cmd
-    cmd="$cmdPrefix env LANG=C fgrep -nH $cmdArgs"
-    case $type in
-        "c") cmd="$cmdPrefix env LANG=C fgrep -nH --include=*.{c,cpp,h,hpp} $cmdArgs";;
-        "t") ;; # default
-        "o") cmd="$cmdPrefix grep $cmdArgs";;
-          *) ;; # default
-    esac
-    echo $cmd
+    cmd="env LANG=C fgrep -nH $cmdArgs"
+    if [ "$cmdPrefix" != "" ]; then
+        cmd="$cmdPrefix $cmd"
+    fi
+    echo "Actual command: $cmd"
     bash -c "$cmd"
 }
 
@@ -68,17 +90,7 @@ function rgrep() {
     mgrep -r $*
 }
 
-export PROMPT_COMMAND='echo -ne "\033k$(pwd|tail -c 30)\033\\"'
-
-bind '"\C-x\C-f": forward-word'
-bind '"\C-x\C-b": backward-word'
-bind '"\C-x\C-h": backward-kill-word'
-bind '"\C-x\C-d": kill-word'
-#bind '"\C-xf": complete-filename'
-#bind '"\C-xc": complete-command'
-#bind '"\C-xv": complete-variable'
-bind '"\C-_": complete-filename'
-bind '"\C-^": complete-command'
-#bind '"\C-\\": complete-variable'
-bind '"\e[1;5n": complete-command'
-bind '"\e[1;5l": complete-variable'
+function precmd()
+{
+    echo -ne "\033k$(pwd|tail -c 30)\033\\"
+}

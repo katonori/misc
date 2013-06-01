@@ -10,6 +10,10 @@ set number
 set statusline=%f%m%r%h%w\ [%{&ff}]%y%6l,%-6c[%p%%(%l)]
 set cursorline
 set fileformats=unix,dos,mac
+set grepprg=mgrep
+"set shell=/bin/bash\ --login\ --init-file\ ~/.bashrc\ -c
+let $BASH_ENV = "~/.bashrc"
+"set shellcmdflag=
 
 " 文字コードの自動認識
 if has('iconv')
@@ -86,7 +90,11 @@ let g:errormarker_errorgroup = "Normal"
 let g:errormarker_warninggroup = "Normal"
 
 " ps mode
-let g:PS_PsCmd = "ps axuf"
+if stridx(system("uname -a "), "Linux") != -1
+    let g:PS_PsCmd = "ps axuf"
+else
+    let g:PS_PsCmd = "ps aux"
+endif
 let g:PS_KillCmd = "kill -9"
 let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 
