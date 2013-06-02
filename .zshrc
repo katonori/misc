@@ -23,7 +23,7 @@ setopt auto_pushd
 
 zstyle ':completion:*:default' menu select=1
 
-alias ls="ls -F -G"
+alias ls="ls -F --color=auto"
 alias lv='lv -c'
 alias ssh='ssh -Y'
 alias vimps='ps aux | vim -c "set filetype=ps" -'
@@ -95,7 +95,8 @@ function mgrep()
     bash -c "$cmd"
 }
 
-function rgrep() {
+function rgrep()
+{
     mgrep -r $*
 }
 
