@@ -5,6 +5,9 @@ bindkey -e
 bindkey "^X^B" backward-word
 bindkey "^X^F" forward-word
 bindkey "^X^D" kill-word
+zle -C _complete_files complete-word complete-files
+complete-files () { compadd - $PREFIX* }
+bindkey "^Xl" _complete_files
 
 autoload -U compinit
 compinit -u
@@ -13,9 +16,12 @@ compinit -u
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=10000
 SAVEHIST=10000
-setopt  hist_ignore_all_dups
-setopt  hist_reduce_blanks
-setopt  share_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt share_history
+setopt auto_pushd
+
+zstyle ':completion:*:default' menu select=1
 
 alias ls="ls -F -G"
 alias lv='lv -c'
@@ -58,11 +64,14 @@ function mgrep()
             "-to")
                 excludeFiles=""
                 ;;
+            "-P")
+                isParallel="on"
+                ;;
             "-r")
                 isRecursive="on"
                 if [ "$isParallel" != "" ]; then
                     isParaRecursive="on"
-                    cmdPrefix="find $lastArg -type f -print0 | xargs -0 -P1 -s 10000 "
+                    cmdPrefix="find $lastArg -type f -print0 | xargs -0 -P8 -s 10000 "
                 else
                     cmdArgs="$cmdArgs $arg"
                 fi

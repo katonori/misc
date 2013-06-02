@@ -22,8 +22,12 @@ syn match	String1	"'.*'"
 syn match	Number	"\d\+"
 syn match	SpecialChar "[-+/*=%&@#\$:]"
 syn match	Parrenthesis "[\[\]\{\}\(\)]"
+
 hi String0 ctermfg=yellow
 hi String1 ctermfg=yellow
 hi Number ctermfg=red
 hi SpecialChar ctermfg=magenta
 hi Parrenthesis ctermfg=green
+
+hi JpSpace cterm=underline ctermbg=red
+au BufRead,BufNew * match JpSpace /　/

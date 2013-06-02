@@ -18,6 +18,7 @@ nnoremap <C-J> 8j
 nnoremap <C-K> 8k
 "nnoremap <C-H> 8h
 "nnoremap <C-L> 8l
+nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
 vnoremap <leader>C y: <c-r>"<Home>
 noremap <leader>r :%s/<c-r><c-w>/

@@ -7,13 +7,13 @@ set hlsearch
 set encoding=utf-8
 set ruler
 set number
-set statusline=%f%m%r%h%w\ [%{&ff}]%y%6l,%-6c[%p%%(%l)]
+set statusline=%f%m%r%h%w\ [%{&fenc}][%{&ff}]%y%6l,%-6c[%p%%(%l)]
 set cursorline
 set fileformats=unix,dos,mac
 set grepprg=mgrep
-"set shell=/bin/bash\ --login\ --init-file\ ~/.bashrc\ -c
-let $BASH_ENV = "~/.bashrc"
-"set shellcmdflag=
+set shell=env\ ZDOTDIR=${HOME}/.vim/\ zsh\ --rcs\ -c
+let $ZDOTDIR = "~/.vim/"
+"set shellcmdflag=-c
 
 " 文字コードの自動認識
 if has('iconv')
