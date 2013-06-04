@@ -1,4 +1,4 @@
-PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}: %{\e[1;33m%}%~%{\e[m%}\n%# '
+PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}:%l: %{\e[1;33m%}%~%{\e[m%}\n%# '
 
 bindkey -e
 #bindkey "^G"
@@ -18,7 +18,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
-setopt share_history
 setopt auto_pushd
 
 zstyle ':completion:*:default' menu select=1
