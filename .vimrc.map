@@ -2,7 +2,15 @@ cnoremap <C-D> <Del>
 cnoremap <C-B> <Left>
 cnoremap <C-F> <Right>
 cnoremap <C-A> <Home>
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
 
+nnoremap [[ :let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>
+nnoremap { :let @t=@/<cr>:let @/='{'<cr>n:let @/=@t<cr>
+nnoremap ]] :let @t=@/<cr>:let @/='}'<cr>n:let @/=@t<cr>
+nnoremap } :let @t=@/<cr>:let @/='}'<cr>N:let @/=@t<cr>
+nnoremap ) :let @t=@/<cr>:let @/=')'<cr>n:let @/=@t<cr>
+nnoremap ( :let @t=@/<cr>:let @/='('<cr>N:let @/=@t<cr>
 nnoremap <C-N> :next<CR>
 nnoremap <C-P> :prev<CR>
 nnoremap <SPACE> $
@@ -20,13 +28,19 @@ nnoremap <C-K> 8k
 "nnoremap <C-L> 8l
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
-vnoremap <leader>C y: <c-r>"<Home>
 noremap <leader>r :%s/<c-r><c-w>/
-vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
 
+vnoremap <leader>C y: <c-r>"<Home>
+vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 vnoremap <silent> <leader>g "vy:exec ":vimgrep /" . escape(getreg('v'), '\/') . "/j %"<CR>
-vnoremap <C-R> y:<C-R>=substitute(@", "\n", "", "g")<CR><CR>
+"vnoremap <C-R> y:<C-R>=substitute(@", "\n", "", "g")<CR><CR>
+vnoremap <C-R> y:call <SID>ExecLines(@")<cr>
+function! s:ExecLines(lines) range
+    for i in split(a:lines, "\n")
+        exec i
+    endfor
+endfunction
 
 " grep
 nnoremap <leader>g :vimgrep /<C-R><C-W>/j %<CR>:let @/="<C-R><C-W>"<CR>:set hlsearch<CR>
