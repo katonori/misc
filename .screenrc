@@ -1,6 +1,6 @@
 escape 
 defkanji utf8
 defencoding utf8
-caption always "%{-b ..}%-w%{+b r.}[[%n%f*%t]]%{-}%+w"
+caption always "%{-b ..}%-w%{+b r.}[%n%f %t]%{-}%+w"
 encoding utf8 utf8
 #termcap * 'G0:S0=\E(%.:E0=\E(B:TY=iso2022'

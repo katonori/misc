@@ -102,5 +102,5 @@ function rgrep()
 
 function precmd()
 {
-    echo -ne "\033k$(pwd|tail -c 30)\033\\"
+    echo -ne "\033k$(basename $(tty)|sed 's/^tty//'):$(pwd|tail -c 20)\033\\"
 }
