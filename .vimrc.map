@@ -9,8 +9,8 @@ nnoremap [[ :let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>
 nnoremap { :let @t=@/<cr>:let @/='{'<cr>n:let @/=@t<cr>
 nnoremap ]] :let @t=@/<cr>:let @/='}'<cr>n:let @/=@t<cr>
 nnoremap } :let @t=@/<cr>:let @/='}'<cr>N:let @/=@t<cr>
-nnoremap ) :let @t=@/<cr>:let @/=')'<cr>n:let @/=@t<cr>
-nnoremap ( :let @t=@/<cr>:let @/='('<cr>N:let @/=@t<cr>
+nnoremap ) }
+nnoremap ( {
 nnoremap <C-N> :next<CR>
 nnoremap <C-P> :prev<CR>
 nnoremap <SPACE> $
