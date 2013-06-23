@@ -13,7 +13,7 @@ nnoremap ) }
 nnoremap ( {
 nnoremap <C-N> :next<CR>
 nnoremap <C-P> :prev<CR>
-nnoremap <SPACE> $
+nnoremap <space> $
 nnoremap * :let @/="\\<<C-R><C-W>\\>"<CR>:set hlsearch<CR>
 nnoremap gn :cnext<CR>
 nnoremap gp :cprev<CR>
@@ -22,14 +22,23 @@ nnoremap <C-W>C :cclose<CR>
 nnoremap <Leader>c :set cursorcolumn!<CR>
 nnoremap <C-E> 4<C-E>
 nnoremap <C-Y> 4<C-Y>
-nnoremap <C-J> 8j
-nnoremap <C-K> 8k
+nnoremap <C-J> 4j
+nnoremap <C-K> 4k
 "nnoremap <C-H> 8h
 "nnoremap <C-L> 8l
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
+nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
+nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
+
 noremap <leader>r :%s/<c-r><c-w>/
 
+vnoremap [[ :<c-u>let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>mv`>V`v
+vnoremap  { :<c-u>let @t=@/<cr>:let @/='{'<cr>`>n:let @/=@t<cr>mv`<V`v
+vnoremap ]] :<c-u>let @t=@/<cr>:let @/='}'<cr>`>n:let @/=@t<cr>mv`<V`v
+vnoremap  } :<c-u>let @t=@/<cr>:let @/='}'<cr>N:let @/=@t<cr>mv`>V`v
+vnoremap ) }
+vnoremap ( {
 vnoremap <leader>C y: <c-r>"<Home>
 vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>

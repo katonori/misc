@@ -1,6 +1,7 @@
 set wildmode=list:longest
 set smartindent
 set expandtab
+set incsearch
 set sw=4
 set laststatus=2
 set hlsearch
@@ -9,6 +10,7 @@ set ruler
 set number
 set statusline=%f%m%r%h%w\ [%{&fenc}][%{&ff}]%y%6l,%-6c[%p%%(%l)]
 set cursorline
+set cursorcolumn
 set fileformats=unix,dos,mac
 set grepprg=mgrep
 set shell=env\ ZDOTDIR=${HOME}/.vim/\ zsh\ --rcs\ -c
