@@ -21,7 +21,7 @@ SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt auto_pushd
-setopt noautoremoveslash:w
+setopt noautoremoveslash
 
 zstyle ':completion:*:default' menu select=1
 
