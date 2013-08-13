@@ -22,12 +22,12 @@ nnoremap <C-E> 4<C-E>
 nnoremap <C-Y> 4<C-Y>
 nnoremap <C-J> 4j
 nnoremap <C-K> 4k
-"nnoremap <C-H> 8h
-"nnoremap <C-L> 8l
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
 nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
 nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
+nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
+nnoremap <leader>p :read $HOME/yank.txt<cr>
 
 function! s:GoOuterBack()
     let l:lines = getline(0, ".")
@@ -95,12 +95,10 @@ endfunction
 
 noremap <leader>r :%s/<c-r><c-w>/
 
+vnoremap <C-J> 4j
+vnoremap <C-K> 4k
 vnoremap [[ :<c-u>let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>mv`>V`v
-vnoremap  { :<c-u>let @t=@/<cr>:let @/='{'<cr>`>n:let @/=@t<cr>mv`<V`v
 vnoremap ]] :<c-u>let @t=@/<cr>:let @/='}'<cr>`>n:let @/=@t<cr>mv`<V`v
-vnoremap  } :<c-u>let @t=@/<cr>:let @/='}'<cr>N:let @/=@t<cr>mv`>V`v
-vnoremap ) }
-vnoremap ( {
 vnoremap <leader>C y: <c-r>"<Home>
 vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>

@@ -10,6 +10,11 @@ zle -C _complete_files complete-word complete-files
 complete-files () { compadd - $PREFIX* }
 bindkey "^Xl" _complete_files
 
+autoload -Uz select-word-style
+select-word-style default
+zstyle ':zle:*' word-chars " _-./;@"
+zstyle ':zle:*' word-style unspecified
+
 autoload -U compinit
 compinit -u
 
@@ -33,6 +38,8 @@ alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
 alias Kill='kill -9'
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
 
 function gyclewn()
 {
