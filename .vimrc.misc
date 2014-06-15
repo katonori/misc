@@ -13,8 +13,8 @@ set cursorline
 set cursorcolumn
 set fileformats=unix,dos,mac
 set grepprg=mgrep
-set shell=env\ ZDOTDIR=${HOME}/.vim/\ zsh\ --rcs\ -c
-let $ZDOTDIR = "~/.vim/"
+"set shell=env\ ZDOTDIR=${HOME}/.vim/\ zsh\ --rcs\ -c
+"let $ZDOTDIR = "~/.vim/"
 "set shellcmdflag=-c
 
 " 文字コードの自動認識
