@@ -68,7 +68,8 @@ function rgrep() {
     mgrep -r $*
 }
 
-export PROMPT_COMMAND='echo -ne "\033k$(pwd|tail -c 30)\033\\"'
+#export PROMPT_COMMAND='echo -ne "\033k$(pwd|tail -c 30)\033\\"'
+#export LC_ALL=C
 
 bind '"\C-x\C-f": forward-word'
 bind '"\C-x\C-b": backward-word'
@@ -82,3 +83,18 @@ bind '"\C-^": complete-command'
 #bind '"\C-\\": complete-variable'
 bind '"\e[1;5n": complete-command'
 bind '"\e[1;5l": complete-variable'
+
+alias ls="ls -F --color=auto"
+alias lv='lv -c'
+alias ssh='ssh -Y'
+alias vimps='ps aux | vim -c "set filetype=ps" -'
+alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
+alias vimbin='vim -c ":BinEdit'
+alias parallel='parallel --gnu'
+alias Kill='kill -9'
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+
+if [ `uname -o|grep -i cygwin` ]; then
+    chcp.com 65001
+fi
