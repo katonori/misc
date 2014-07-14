@@ -17,6 +17,7 @@ set grepprg=mgrep
 "set shell=env\ ZDOTDIR=${HOME}/.vim/\ zsh\ --rcs\ -c
 "let $ZDOTDIR = "~/.vim/"
 "set shellcmdflag=-c
+set nf="hex"
 
 " 文字コードの自動認識
 if has('iconv')
