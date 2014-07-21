@@ -28,6 +28,8 @@ nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
 nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
 nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
 nnoremap <leader>p :read $HOME/yank.txt<cr>
+nnoremap zp :PosListAdd<CR>
+nnoremap zl :PosListShow<CR>
 
 function! s:GoOuterBack()
     let l:lines = getline(0, ".")
