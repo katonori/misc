@@ -2,10 +2,11 @@
 " highlight settings
 "
 syntax on
-colorscheme default
+colorscheme desert
 set bg=dark
 " overwrite settings
-hi CursorLine   term=reverse cterm=bold ctermbg=darkgray
+hi CursorLine   term=reverse cterm=bold 
+hi CursorColumn   term=reverse cterm=bold 
 hi Statement    term=bold cterm=bold ctermfg=lightred gui=bold
 hi StatusLine cterm=bold ctermfg=black ctermbg=yellow
 hi PreProc ctermfg=yellow

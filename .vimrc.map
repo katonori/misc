@@ -5,14 +5,10 @@ cnoremap <C-A> <Home>
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
-nnoremap (U :call <SID>GoOuterBack()<cr>
-nnoremap (D :call <SID>GoInnerBack()<cr>
-nnoremap )U :call <SID>GoOuterForward()<cr>
-nnoremap )D :call <SID>GoInnerForward()<cr>
 nnoremap <C-N> :next<CR>
 nnoremap <C-P> :prev<CR>
 nnoremap <space> $
-nnoremap * :let @/="\\<<C-R><C-W>\\>"<CR>:set hlsearch<CR>
+nnoremap * :Search \<<c-r><c-w>\><cr>
 nnoremap gn :cnext<CR>
 nnoremap gp :cprev<CR>
 nnoremap <Leader><C-M> :make<CR>
@@ -20,80 +16,17 @@ nnoremap <C-W>C :cclose<CR>
 nnoremap <Leader>c :set cursorcolumn!<CR>
 nnoremap <C-E> 4<C-E>
 nnoremap <C-Y> 4<C-Y>
-nnoremap <C-J> 4j
-nnoremap <C-K> 4k
+nnoremap <C-K> 4<c-y>
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
-nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
-nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
+"nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
+"nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
 nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
 nnoremap <leader>p :read $HOME/yank.txt<cr>
-nnoremap zp :PosListAdd<CR>
+nnoremap zm :PosListAdd<CR>
 nnoremap zl :PosListShow<CR>
-
-function! s:GoOuterBack()
-    let l:lines = getline(0, ".")
-    let l:i = line(".")
-    let l:indentLv = len(matchstr(getline("."), '^ \+'))
-    let l:i -= 1
-    while l:i >= 1
-        let l:indent = matchstr(l:lines[l:i], '^ \+')
-        let l:col = len(l:indent)
-        if l:col < l:indentLv
-            call cursor(l:i+1, l:col+1)
-            break
-        endif
-        let l:i -= 1
-    endwhile
-endfunction
-
-function! s:GoInnerBack()
-    let l:lines = getline(0, ".")
-    let l:i = line(".")
-    let l:indentLv = len(matchstr(getline("."), '^ \+'))
-    let l:i -= 1
-    while l:i >= 1
-        let l:indent = matchstr(l:lines[l:i], '^ \+')
-        let l:col = len(l:indent)
-        if l:col > l:indentLv
-            call cursor(l:i+1, l:col+1)
-            break
-        endif
-        let l:i -= 1
-    endwhile
-endfunction
-
-function! s:GoOuterForward()
-    let l:lines = getline(".", "$")
-    let l:last = line("$") - line(".")
-    let l:indentLv = len(matchstr(getline("."), '^ \+'))
-    let l:i = 1
-    while l:i <= l:last
-        let l:indent = matchstr(l:lines[l:i], '^ \+')
-        let l:col = len(l:indent)
-        if l:col < l:indentLv
-            call cursor(l:i+line("."), l:col+1)
-            break
-        endif
-        let l:i += 1
-    endwhile
-endfunction
-
-function! s:GoInnerForward()
-    let l:lines = getline(".", "$")
-    let l:last = line("$") - line(".")
-    let l:indentLv = len(matchstr(getline("."), '^ \+'))
-    let l:i = 1
-    while l:i <= l:last
-        let l:indent = matchstr(l:lines[l:i], '^ \+')
-        let l:col = len(l:indent)
-        if l:col > l:indentLv
-            call cursor(l:i+line("."), l:col+1)
-            break
-        endif
-        let l:i += 1
-    endwhile
-endfunction
+nnoremap zn :cnext<cr>
+nnoremap zp :cprev<cr>
 
 noremap <leader>r :%s/<c-r><c-w>/
 
@@ -103,7 +36,7 @@ vnoremap [[ :<c-u>let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>mv`>V`v
 vnoremap ]] :<c-u>let @t=@/<cr>:let @/='}'<cr>`>n:let @/=@t<cr>mv`<V`v
 vnoremap <leader>C y: <c-r>"<Home>
 vnoremap <leader>r y:%s/<c-r>=escape(@",'\/')<cr>/
-vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+vnoremap <silent> * "vy:Search \V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 vnoremap <silent> <leader>g "vy:exec ":vimgrep /" . escape(getreg('v'), '\/') . "/j %"<CR>
 "vnoremap <C-R> y:<C-R>=substitute(@", "\n", "", "g")<CR><CR>
 vnoremap <C-R> y:call <SID>ExecLines(@")<cr>
@@ -121,7 +54,7 @@ nnoremap gG :vimgrep /<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')/j %<CR>
 " key maps for quickfix
 "
 autocmd! FileType qf
-autocmd  FileType qf nnoremap <buffer> <CR> <CR>zz:wincmd p<CR>
+"autocmd  FileType qf nnoremap <buffer> <CR> <CR>zz:wincmd p<CR>
 autocmd  FileType qf nnoremap <buffer> q :wincmd p<CR>:cclose<CR>
 
 "
@@ -169,3 +102,17 @@ autocmd FileType ps nnoremap <buffer> <silent> <C-K> 8k
 "
 autocmd! FileType gitcommit
 autocmd! FileType gitcommit nmap <c-d> :let @t=winnr()<cr>:normal D<cr>:exec @t . "wincmd w"<cr>
+
+
+"
+" easy motion
+"
+nmap W <Plug>(easymotion-bd-w)
+nmap E <Plug>(easymotion-bd-e)
+nmap <c-u> <Plug>(easymotion-s2)
+nmap <c-g> <Plug>(easymotion-s2)
+nmap S <Plug>(easymotion-s)
+nmap F <Plug>(easymotion-bd-fl)
+nmap <C-J> H<Plug>(easymotion-j)
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'

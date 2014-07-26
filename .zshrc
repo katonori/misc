@@ -41,6 +41,12 @@ alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 
+if [ "`uname|grep CYGWIN`" != "" ]; then
+    chcp.com 65001
+    alias s="cygstart"
+    alias tmux="rm -rfv /tmp/tmux* && tmux"
+fi
+
 function gyclewn()
 {
   \pyclewn -e vim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
