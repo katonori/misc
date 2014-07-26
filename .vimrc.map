@@ -24,7 +24,7 @@ nnoremap <leader>C : <c-r><c-w><Home>
 nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
 nnoremap <leader>p :read $HOME/yank.txt<cr>
 nnoremap zm :PosListAdd<CR>
-nnoremap zl :PosListShow<CR>
+nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
 nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
 
@@ -110,9 +110,10 @@ autocmd! FileType gitcommit nmap <c-d> :let @t=winnr()<cr>:normal D<cr>:exec @t 
 nmap W <Plug>(easymotion-bd-w)
 nmap E <Plug>(easymotion-bd-e)
 nmap <c-u> <Plug>(easymotion-s2)
-nmap <c-g> <Plug>(easymotion-s2)
-nmap S <Plug>(easymotion-s)
+nmap S <Plug>(easymotion-s2)
 nmap F <Plug>(easymotion-bd-fl)
 nmap <C-J> H<Plug>(easymotion-j)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
+
+

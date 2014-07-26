@@ -170,8 +170,8 @@ imap <c-k> <Plug>(neosnippet_expand_or_jump)
 smap <c-k> <Plug>(neosnippet_expand_or_jump)
 
 " SuperTab like snippets behavior.
-imap  neosnippet#expandable_or_jumpable() ? "\(neosnippet_expand_or_jump)" : pumvisible() ? "\" : "\"
-smap  neosnippet#expandable_or_jumpable() ?"\(neosnippet_expand_or_jump)" : "\"
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?  \ "\<Plug>(neosnippet_expand_or_jump)" \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?  \ "\<Plug>(neosnippet_expand_or_jump)" \: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -179,3 +179,5 @@ if has('conceal')
 endif
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/.vim/snippets'
+
+
