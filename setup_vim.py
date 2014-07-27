@@ -26,6 +26,7 @@ urlList = [
         "https://github.com/Shougo/neosnippet.vim",
         "https://github.com/honza/vim-snippets",
         "https://github.com/tomtom/quickfixsigns_vim",
+        "https://github.com/katonori/regex_efmt.vim",
         ]
 
 for url in urlList:

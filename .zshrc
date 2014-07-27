@@ -40,6 +40,7 @@ alias parallel='parallel --gnu'
 alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
+alias -g TL='2>&1 |tee log'
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
