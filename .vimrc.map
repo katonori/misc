@@ -5,8 +5,8 @@ cnoremap <C-A> <Home>
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
-nnoremap <C-N> :next<CR>
-nnoremap <C-P> :prev<CR>
+nnoremap <C-x>n :next<CR>
+nnoremap <C-x>p :prev<CR>
 nnoremap <space> $
 nnoremap * :Search \<<c-r><c-w>\><cr>
 nnoremap gn :cnext<CR>
@@ -117,3 +117,12 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
 
 
+"
+" yankround
+"
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-x><c-k> <Plug>(yankround-prev)
+nmap <C-x><c-j> <Plug>(yankround-next)

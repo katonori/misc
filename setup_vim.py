@@ -15,7 +15,7 @@ urlList = [
         "https://github.com/katonori/vicmake.vim",
         "https://github.com/tpope/vim-fugitive",
         "https://github.com/katonori/vimsvn.vim",
-        "https://github.com/vim-scripts/YankRing.vim",
+        "https://github.com/LeafCage/yankround.vim.git",
         "https://github.com/troydm/easybuffer.vim",
         "https://github.com/vim-scripts/MultipleSearch",
         "https://github.com/katonori/ps.vim",
