@@ -110,7 +110,7 @@ autocmd! FileType gitcommit nmap <c-d> :let @t=winnr()<cr>:normal D<cr>:exec @t 
 nmap W <Plug>(easymotion-bd-w)
 nmap E <Plug>(easymotion-bd-e)
 nmap <c-u> <Plug>(easymotion-s2)
-nmap S <Plug>(easymotion-s2)
+nmap S <Plug>(easymotion-s)
 nmap F <Plug>(easymotion-bd-fl)
 nmap <C-J> H<Plug>(easymotion-j)
 let g:EasyMotion_smartcase = 1

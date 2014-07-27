@@ -1,4 +1,4 @@
-#!/usr/bin/evn python
+#!/usr/bin/env python
 
 import os
 
@@ -26,7 +26,7 @@ urlList = [
         "https://github.com/Shougo/neosnippet.vim",
         "https://github.com/honza/vim-snippets",
         "https://github.com/tomtom/quickfixsigns_vim",
-        "https://github.com/katonori/regex_efmt.vim",
+        "https://github.com/katonori/regex_efm.vim",
         ]
 
 for url in urlList:
