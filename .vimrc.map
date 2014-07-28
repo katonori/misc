@@ -5,18 +5,20 @@ cnoremap <C-A> <Home>
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
-nnoremap <C-x>n :next<CR>
-nnoremap <C-x>p :prev<CR>
-nnoremap <space> $
+nnoremap <space>n :next<CR>
+nnoremap <space>p :prev<CR>
+nnoremap <space>l $
+nnoremap <space>h ^
 nnoremap * :Search \<<c-r><c-w>\><cr>
-nnoremap gn :cnext<CR>
-nnoremap gp :cprev<CR>
+"nnoremap gn :cnext<CR>
+"nnoremap gp :cprev<CR>
 nnoremap <Leader><C-M> :make<CR>
 nnoremap <C-W>C :cclose<CR>
 nnoremap <Leader>c :set cursorcolumn!<CR>
 nnoremap <C-E> 4<C-E>
 nnoremap <C-Y> 4<C-Y>
-nnoremap <C-K> 4<c-y>
+nnoremap <C-j> 8<c-e>
+nnoremap <C-K> 8<c-y>
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
 "nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
@@ -27,6 +29,7 @@ nnoremap zm :PosListAdd<CR>
 nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
 nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
+nnoremap <space>d :silent execute("!echo 'cd " . expand("%:h") . "' >" . "~/.vimrc.cwd")<cr><c-l>
 
 noremap <leader>r :%s/<c-r><c-w>/
 
@@ -109,10 +112,11 @@ autocmd! FileType gitcommit nmap <c-d> :let @t=winnr()<cr>:normal D<cr>:exec @t 
 "
 nmap W <Plug>(easymotion-bd-w)
 nmap E <Plug>(easymotion-bd-e)
-nmap <c-u> <Plug>(easymotion-s2)
+nmap mg <Plug>(easymotion-s2)
 nmap S <Plug>(easymotion-s)
 nmap F <Plug>(easymotion-bd-fl)
-nmap <C-J> H<Plug>(easymotion-j)
+nmap <space>j <Plug>(easymotion-j)
+nmap <space>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
 
