@@ -36,3 +36,6 @@ for url in urlList:
         cmd = "git clone %s %s"%(url, tgt_dir)
         print "cmd: "  + cmd
         os.system(cmd)
+    else:
+        cmd = "cd %s && git pull"%(tgt_dir)
+        os.system(cmd)

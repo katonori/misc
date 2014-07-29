@@ -18,6 +18,8 @@ set grepprg=mgrep
 "let $ZDOTDIR = "~/.vim/"
 "set shellcmdflag=-c
 set nf="hex"
+set ignorecase
+set smartcase
 
 " 文字コードの自動認識
 if has('iconv')
