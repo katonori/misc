@@ -30,6 +30,14 @@ nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
 nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
 nnoremap <space>d :silent execute("!echo 'cd " . expand("%:p:h") . "' >" . "~/.vimrc.cwd")<cr><c-l>
+nnoremap md d`z
+nnoremap my y`z<c-o>
+nnoremap mD d'z
+nnoremap mY y'z<c-o>
+nnoremap m= ='z<c-o>
+nnoremap m> >'z<c-o>
+nnoremap m< <'z<c-o>
+nnoremap QQ :q<cr>
 
 noremap <leader>r :%s/<c-r><c-w>/
 
