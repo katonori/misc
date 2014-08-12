@@ -124,44 +124,44 @@ command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, 
 autocmd FileType * setlocal formatoptions-=ro
 
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 5
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
- " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Select with <TAB>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-let g:neocomplcache_ctags_arguments_list = {
-  \ 'perl' : '-R -h ".pm"'
-  \ }
-
-"et g:neocomplcache_snippets_dir = "~/.vim/snippets"
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default'    : '',
-    \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
-    \ 'c'          : $HOME . '/.vim/dict/c.dict',
-    \ 'cpp'        : $HOME . '/.vim/dict/c.dict'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" for snippets
-"imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-set completeopt-=preview
+"let g:acp_enableAtStartup = 0
+"" Use neocomplcache.
+"let g:neocomplcache_enable_at_startup = 1
+"" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+"" Set minimum syntax keyword length.
+"let g:neocomplcache_min_syntax_length = 5
+"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+"
+" " Use smartcase.
+"let g:neocomplcache_enable_smart_case = 1
+"" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+"" Select with <TAB>
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"
+"let g:neocomplcache_ctags_arguments_list = {
+"  \ 'perl' : '-R -h ".pm"'
+"  \ }
+"
+""et g:neocomplcache_snippets_dir = "~/.vim/snippets"
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+"    \ 'default'    : '',
+"    \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
+"    \ 'c'          : $HOME . '/.vim/dict/c.dict',
+"    \ 'cpp'        : $HOME . '/.vim/dict/c.dict'
+"    \ }
+"
+"" Define keyword.
+"if !exists('g:neocomplcache_keyword_patterns')
+"  let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"
+"" for snippets
+""imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
+"set completeopt-=preview
 
 
 "
@@ -186,3 +186,5 @@ endif
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/.vim/snippets'
 let g:neosnippet#disable_runtime_snippets = { "_": 1, }
+
+let g:Gtags_No_Auto_Jump=1

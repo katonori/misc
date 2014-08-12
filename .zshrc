@@ -41,7 +41,11 @@ alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 alias -g TL='2>&1 |tee log'
+alias -g TLH='2>&1 |tee ~/log'
 alias C="source ~/.vimrc.cwd"
+function myglobal() { global --result grep -g -o $1 -S $2 }
+alias gg="myglobal"
+alias gu="global -uv"
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
