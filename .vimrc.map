@@ -31,15 +31,20 @@ nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
 nnoremap <space>d :silent execute("!echo 'cd " . expand("%:p:h") . "' >" . "~/.vimrc.cwd")<cr><c-l>
 nnoremap md d`z
-nnoremap my y`z<c-o>
+nnoremap my "ry`z<c-o>
 nnoremap mD d'z
-nnoremap mY y'z<c-o>
+nnoremap mY "ry'z<c-o>
 nnoremap m= ='z<c-o>
 nnoremap m> >'z<c-o>
 nnoremap m< <'z<c-o>
 nnoremap QQ :q<cr>
 
 noremap <leader>r :%s/<c-r><c-w>/
+
+" unite
+noremap <space>uf :Unite file<cr>
+noremap <space>ul :Unite line<cr>
+noremap <space>ur :Unite file_mru<cr>
 
 vnoremap <C-J> 4j
 vnoremap <C-K> 4k
@@ -128,13 +133,3 @@ nmap <space>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
 
-
-"
-" yankround
-"
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <space><c-k> <Plug>(yankround-prev)
-nmap <space><c-j> <Plug>(yankround-next)

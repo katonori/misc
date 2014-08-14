@@ -40,12 +40,18 @@ alias parallel='parallel --gnu'
 alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
+alias -g L='2>&1 |less -R'
 alias -g TL='2>&1 |tee log'
+alias -g TLA='2>&1 |tee -a log'
 alias -g TLH='2>&1 |tee ~/log'
 alias C="source ~/.vimrc.cwd"
-function myglobal() { global --result grep -g -o $1 -S $2 }
+function myglobal() { global --color=always --result grep -g -o $1 -S $2 $argv[3,-1] }
 alias gg="myglobal"
 alias gu="global -uv"
+function myfg() { fg %$1 }
+alias f="myfg"
+alias grep="fgrep --color=always"
+alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
@@ -121,7 +127,7 @@ function rgrep()
     mgrep -r $*
 }
 
-function precmd()
-{
-    echo -ne "\033k$(basename $(tty)|sed 's/^tty//'):$(pwd|tail -c 20)\033\\"
-}
+#function precmd()
+#{
+#    echo -ne "\033k$(basename $(tty)|sed 's/^tty//'):$(pwd|tail -c 20)\033\\"
+#}
