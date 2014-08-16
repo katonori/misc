@@ -6,6 +6,8 @@ bindkey -e
 bindkey "^X^B" backward-word
 bindkey "^X^F" forward-word
 bindkey "^X^D" kill-word
+bindkey "^R" history-incremental-search-backward
+bindkey "^T" history-incremental-search-forward
 zle -C _complete_files complete-word complete-files
 complete-files () { compadd - $PREFIX* }
 bindkey "^Xl" _complete_files
@@ -41,6 +43,7 @@ alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 alias -g L='2>&1 |less -R'
+alias -g G='2>&1 |grep '
 alias -g TL='2>&1 |tee log'
 alias -g TLA='2>&1 |tee -a log'
 alias -g TLH='2>&1 |tee ~/log'
