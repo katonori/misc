@@ -25,8 +25,8 @@ nnoremap <leader>C : <c-r><c-w><Home>
 "nnoremap - :let @t=@/<cr>:let @/='[A-Z]'<cr>N:let @/=@t<cr>
 nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
 nnoremap <leader>p :read $HOME/yank.txt<cr>
-nnoremap zm :PosListAdd<CR>
-nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
+"nnoremap zm :PosListAdd<CR>
+"nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
 nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
 nnoremap <space>d :silent execute("!echo 'cd " . expand("%:p:h") . "' >" . "~/.vimrc.cwd")<cr><c-l>
@@ -40,6 +40,8 @@ nnoremap m< <'z<c-o>
 nnoremap QQ :q<cr>
 
 noremap <leader>r :%s/<c-r><c-w>/
+noremap <leader>lm :REefmMK log<cr>
+noremap <leader>s :SvnGetStat 
 
 " unite
 noremap <space>uf :Unite file<cr>
@@ -133,3 +135,47 @@ nmap <space>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
 
+function! g:RedirCommand(cmd)
+    let l:bufname = "redir_buff"
+    silent redir => stored_cmd
+    silent execute(a:cmd)
+    silent redir END
+    " check if already opend
+    let l:winnum = bufwinnr(l:bufname)
+    if l:winnum == -1
+        execute "botright 10new " . "redir_buff"
+        "execute "rightb 20vnew " . "redir_buff"
+        execute "set buftype=nofile"
+    else
+        exec l:winnum . "wincmd w"
+    endif
+    "
+    " update buffer
+    "
+    setlocal modifiable
+    setlocal noreadonly
+    silent! %delete _
+    let l:msg = split(stored_cmd, "\n")
+    for l:line in l:msg
+        call append(line("$")-1, l:line)
+    endfor
+    exec "0"
+    setlocal nomodifiable
+    setlocal readonly
+    exec("wincmd p")
+endfunction
+
+function! g:RedirCloseBuf()
+    let l:bufname = "redir_buff"
+    let l:winnum = bufwinnr(l:bufname)
+    if l:winnum == -1
+    else
+        exec l:winnum . "wincmd w"
+        exec "wincmd c"
+        exec "wincmd p"
+    endif
+endfunction
+
+nnoremap zm :call RedirCommand("marks")<cr>
+nnoremap zr :call RedirCommand("reg")<cr>
+nnoremap zc :call RedirCloseBuf()<cr>

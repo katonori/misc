@@ -198,7 +198,7 @@ let g:Gtags_No_Auto_Jump=1
 "
 " easymotion
 "
-let g:EasyMotion_keys = 'ASDFJKLQWERUIUIOP;GHTY'
+let g:EasyMotion_keys = 'ASDFJKLQWERUIUIOPGHTY'
 " Show target key with upper case to improve readability
 let g:EasyMotion_use_upper = 1
 " Jump to first match with enter & space
