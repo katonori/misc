@@ -29,10 +29,23 @@ setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt auto_pushd
 setopt noautoremoveslash
+setopt append_history
+setopt auto_param_slash
+setopt magic_equal_subst
 
 zstyle ':completion:*:default' menu select=1
 
-alias ls="ls -F --color=auto"
+alias c="cd"
+alias b="bg"
+alias c="cd"
+alias g="grep"
+alias h="history"
+alias j="jobs"
+alias k="kill -9"
+alias l="ls -F --color=auto"
+alias m="make"
+alias v="vim"
+
 alias lv='lv -c'
 alias ssh='ssh -Y'
 alias vimps='ps aux | vim -c "set filetype=ps" -'

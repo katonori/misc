@@ -102,7 +102,7 @@ let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 " md preview
 autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/devel/css/markdown.css\ %\ -o\ /tmp/md.html\ &&\ open\ /tmp/md.html
 
-command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/db"
+command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
 
 " Disable AutoComplPop.
@@ -198,7 +198,7 @@ let g:Gtags_No_Auto_Jump=1
 "
 " easymotion
 "
-let g:EasyMotion_keys = 'ASDFJKLQWERUIUIOPGHTY'
+let g:EasyMotion_keys = 'ASDFJKLWERIOPGHZXCVNM;'
 " Show target key with upper case to improve readability
 let g:EasyMotion_use_upper = 1
 " Jump to first match with enter & space
