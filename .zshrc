@@ -66,7 +66,7 @@ alias gg="myglobal"
 alias gu="global -uv"
 function myfg() { fg %$1 }
 alias f="myfg"
-alias grep="fgrep --color=always"
+alias g="fgrep --color=always"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
