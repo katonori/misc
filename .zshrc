@@ -69,6 +69,7 @@ function myfg() { fg %$1 }
 alias f="myfg"
 alias g="fgrep --color=always"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+alias gpom="git push origin master"
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
