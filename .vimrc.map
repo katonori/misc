@@ -38,6 +38,8 @@ nnoremap m= ='z<c-o>
 nnoremap m> >'z<c-o>
 nnoremap m< <'z<c-o>
 nnoremap QQ :q<cr>
+nnoremap <space>F /^[^\t #\/}]<cr>
+nnoremap <space>L /\(\<for\>\)\\|\(\<while\>\)\\|\(\<do\>\)<cr>
 
 noremap <leader>r :%s/<c-r><c-w>/
 noremap <leader>lm :REefmMK log<cr>
@@ -176,6 +178,6 @@ function! g:RedirCloseBuf()
     endif
 endfunction
 
-nnoremap zm :call RedirCommand("marks")<cr>
-nnoremap zr :call RedirCommand("reg")<cr>
-nnoremap zc :call RedirCloseBuf()<cr>
+nnoremap zm :call g:RedirCommand("marks")<cr>
+nnoremap zr :call g:RedirCommand("reg")<cr>
+nnoremap zc :call g:RedirCloseBuf()<cr>

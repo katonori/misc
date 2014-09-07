@@ -1,5 +1,6 @@
 PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}:%l: %{\e[1;33m%}%~%{\e[m%}\n%# '
 export EDITOR='vim'
+export PATH=~/bin:${PATH}
 
 bindkey -e
 #bindkey "^G"
@@ -48,7 +49,7 @@ alias v="vim"
 
 alias lv='lv -c'
 alias ssh='ssh -Y'
-alias vimps='ps aux | vim -c "set filetype=ps" -'
+alias vimps="vim -c \":PS | :wincmd o\""
 alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
