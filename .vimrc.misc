@@ -102,6 +102,18 @@ let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 " md preview
 autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/devel/css/markdown.css\ %\ -o\ /tmp/md.html\ &&\ open\ /tmp/md.html
 
+" manageg path list
+function l:updatePathList()
+python << EOF
+import vim
+pathList = vim.eval('&path . "," . system("cpath_mgr " . expand("%:p"))')
+vim.command('let &path="' + ",".join(list(set(sorted(pathList.split(","))))) + '"')
+EOF
+endfunction
+
+autocmd FileType c call l:updatePathList()
+autocmd FileType cpp call l:updatePathList()
+
 command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
 
@@ -221,6 +233,18 @@ vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
 "
+" Switch.vim
+"
+let g:switch_custom_definitions =
+    \ [
+    \   {
+    \     'True':       'False',
+    \     'False':      'True',
+    \   },
+    \ ]
+nnoremap + :Switch<cr>
+
+"
 " Vundle
 "
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -238,11 +262,14 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'kana/vim-textobj-user'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle "honza/vim-snippets"
-Bundle 'Shougo/neocomplete'
-"Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet.vim'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'Shougo/unite.vim'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'MultipleSearch'
+Bundle 'mhinz/vim-startify'
+Bundle 'AndrewRadev/switch.vim'
+Bundle 'davidhalter/jedi-vim'
