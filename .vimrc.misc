@@ -103,7 +103,7 @@ let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/devel/css/markdown.css\ %\ -o\ /tmp/md.html\ &&\ open\ /tmp/md.html
 
 " manageg path list
-function l:updatePathList()
+function s:UpdatePathList()
 python << EOF
 import vim
 pathList = vim.eval('&path . "," . system("cpath_mgr " . expand("%:p"))')
@@ -111,8 +111,8 @@ vim.command('let &path="' + ",".join(list(set(sorted(pathList.split(","))))) + '
 EOF
 endfunction
 
-autocmd FileType c call l:updatePathList()
-autocmd FileType cpp call l:updatePathList()
+autocmd FileType c call s:UpdatePathList()
+autocmd FileType cpp call s:UpdatePathList()
 
 command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
