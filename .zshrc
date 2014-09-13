@@ -1,6 +1,6 @@
 PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}:%l: %{\e[1;33m%}%~%{\e[m%}\n%# '
 export EDITOR='vim'
-export PATH=~/bin:${PATH}
+export PATH=~/bin:~/utils/:${PATH}
 
 bindkey -e
 #bindkey "^G"
