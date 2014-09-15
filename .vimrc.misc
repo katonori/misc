@@ -106,8 +106,12 @@ autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/deve
 function s:UpdatePathList()
 python << EOF
 import vim
-pathList = vim.eval('&path . "," . system("cpath_mgr " . expand("%:p"))')
-vim.command('let &path="' + ",".join(list(set(sorted(pathList.split(","))))) + '"')
+oldList = vim.eval('&path').split(",")
+newList = vim.eval('system("cpath_mgr " . expand("%:p"))').split(",")
+for i in newList:
+    if not (i in oldList):
+        oldList.append(i)
+vim.command('let &path="' + ",".join(oldList) + '"')
 EOF
 endfunction
 
@@ -273,3 +277,4 @@ Bundle 'MultipleSearch'
 Bundle 'mhinz/vim-startify'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'vim-scripts/mru.vim'
