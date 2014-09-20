@@ -159,7 +159,7 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " for snippets
 imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-set completeopt-=preview
+set completeopt=longest,menuone
 
 "==========================================
 "neocomplete.vim
@@ -278,3 +278,4 @@ Bundle 'mhinz/vim-startify'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-scripts/mru.vim'
+Bundle 'osyo-manga/vim-over'

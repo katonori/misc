@@ -72,6 +72,8 @@ alias g="fgrep --color=always"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 alias gpom="git push origin master"
 
+stty stop undef
+
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
     alias s="cygstart"
