@@ -103,7 +103,7 @@ let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/devel/css/markdown.css\ %\ -o\ /tmp/md.html\ &&\ open\ /tmp/md.html
 
 " manageg path list
-function s:UpdatePathList()
+function! s:UpdatePathList()
 python << EOF
 import vim
 oldList = vim.eval('&path').split(",")
