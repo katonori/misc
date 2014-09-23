@@ -77,7 +77,7 @@ stty stop undef
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
     alias s="cygstart"
-    alias tmux="rm -rfv /tmp/tmux* && tmux"
+    alias tmux="rm -rfv /tmp/tmux* && tmux -u"
 fi
 
 function gyclewn()
