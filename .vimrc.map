@@ -40,7 +40,9 @@ nnoremap m< <'z<c-o>
 nnoremap QQ :q<cr>
 nnoremap <space>F /^[^\t #\/}]<cr>
 nnoremap <space>L /\(\<for\>\)\\|\(\<while\>\)\\|\(\<do\>\)<cr>
-nnoremap ( :OverCommandLine<cr>
+nnoremap ( F 
+nnoremap ) f 
+nnoremap <space>r :OverCommandLine<cr>
 inoremap <c-s> <esc>:w<cr>
 nnoremap <c-s> <esc>:w<cr>
 
