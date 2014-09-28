@@ -46,6 +46,7 @@ alias k="kill -9"
 alias ls="ls -F --color=auto"
 alias l="ls -F --color=auto"
 alias m="make"
+alias p="python"
 alias v="vim"
 
 alias lv='lv -c'
@@ -78,6 +79,8 @@ if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
     alias s="cygstart"
     alias tmux="rm -rfv /tmp/tmux* && tmux"
+else
+    alias s="source"
 fi
 
 function gyclewn()
