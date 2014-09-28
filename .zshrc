@@ -72,13 +72,13 @@ alias f="myfg"
 alias g="fgrep --color=always"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 alias gpom="git push origin master"
+alias tmux="tmux -u"
 
 stty stop undef
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
     alias s="cygstart"
-    alias tmux="rm -rfv /tmp/tmux* && tmux"
 else
     alias s="source"
 fi
