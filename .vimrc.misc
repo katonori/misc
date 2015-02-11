@@ -267,7 +267,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle "honza/vim-snippets"
 "Bundle 'Shougo/neocomplete'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet.vim'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'Shougo/unite.vim'
