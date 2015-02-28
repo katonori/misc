@@ -278,4 +278,5 @@ Bundle 'mhinz/vim-startify'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-scripts/mru.vim'
+let MRU_Add_Menu = 0
 Bundle 'osyo-manga/vim-over'
