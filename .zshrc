@@ -73,6 +73,7 @@ alias g="fgrep --color=always"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 alias gpom="git push origin master"
 alias tmux="tmux -u"
+alias btar="tar --use-compress-program=pbzip2"
 
 stty stop undef
 
