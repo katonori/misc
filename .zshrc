@@ -27,7 +27,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 setopt hist_ignore_all_dups
-setopt hist_reduce_blanks
+unsetopt hist_reduce_blanks
 setopt auto_pushd
 setopt noautoremoveslash
 setopt append_history
