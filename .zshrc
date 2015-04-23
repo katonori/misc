@@ -47,7 +47,18 @@ alias ls="ls -F --color=auto"
 alias l="ls -F --color=auto"
 alias m="make"
 alias p="python"
-alias v="vim"
+function v()
+{
+    LINE=`echo ${*} | sed 's/.\+:\([0-9]\+\)/\1/g'`
+    ARGS=`echo ${*} | sed 's/:[0-9]\+//g'`
+    if [ $LINE != "$*" ] ; then
+        LINE="+${LINE}"
+    else
+        LINE=""
+    fi
+    #echo vim "$LINE" "$ARGS"
+    vim $LINE $ARGS
+}
 
 alias lv='lv -c'
 alias ssh='ssh -Y'

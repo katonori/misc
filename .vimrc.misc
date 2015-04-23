@@ -4,6 +4,7 @@ set expandtab
 set incsearch
 set sw=4
 set bs=2
+set tabstop=4
 set laststatus=2
 set hlsearch
 set encoding=utf-8
@@ -19,6 +20,7 @@ set ignorecase
 set smartcase
 set smarttab
 set timeoutlen=1000
+set directory=~/vim_swap
 
 if has('persistent_undo')
     set undodir=~/.vim/undo
