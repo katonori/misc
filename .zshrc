@@ -62,7 +62,7 @@ function v()
 
 alias lv='lv -c'
 alias ssh='ssh -Y'
-alias vimps="vim -c \":PS | :wincmd o\""
+alias vimps="vim -c \":new | :wincmd o | :PsThisBuffer\""
 alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
