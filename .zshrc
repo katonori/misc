@@ -64,6 +64,7 @@ alias lv='lv -c'
 alias ssh='ssh -Y'
 alias vimps="vim -c \":new | :wincmd o | :PsThisBuffer\""
 alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
+alias vg="vimgit"
 alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
 alias Kill='kill -9'

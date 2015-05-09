@@ -186,3 +186,9 @@ endfunction
 nnoremap zm :call g:RedirCommand("marks")<cr>
 nnoremap zr :call g:RedirCommand("reg")<cr>
 nnoremap zc :call g:RedirCloseBuf()<cr>
+
+nnoremap mm :marks<cr>
+nnoremap ml :doautocmd User<cr>
+
+nnoremap <c-u>u :Unite<cr>
+nnoremap <c-u>f :Unite file_mru<cr>

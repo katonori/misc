@@ -117,8 +117,12 @@ vim.command('let &path="' + ",".join(oldList) + '"')
 EOF
 endfunction
 
-autocmd FileType c call s:UpdatePathList()
-autocmd FileType cpp call s:UpdatePathList()
+function! s:UpdateBuildOpt()
+    "let g:clang_user_options=system("cpath_mgr -b " . expand("%:p"))
+endfunction
+
+autocmd FileType c call s:UpdatePathList() | call s:UpdateBuildOpt()
+autocmd FileType cpp call s:UpdatePathList() | call s:UpdateBuildOpt()
 
 command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
@@ -251,6 +255,15 @@ let g:switch_custom_definitions =
 nnoremap + :Switch<cr>
 
 "
+" clang_complete
+"
+let g:clang_complete_auto=0
+let g:clang_use_library=1
+let g:clang_exec='clang'
+let g:clang_user_options='-I/usr/include'
+let g:clang_library_path='/usr/lib/llvm-3.4/lib/'
+
+"
 " Vundle
 "
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -274,6 +287,7 @@ Bundle 'Shougo/neosnippet.vim'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'Shougo/unite.vim'
 Bundle 'tomtom/quickfixsigns_vim'
+let g:quickfixsigns_events = ['BufReadPost', 'BufEnter', 'CursorHold', 'CursorHoldI', 'InsertLeave', 'InsertEnter', 'User']
 Bundle 'Shougo/neomru.vim'
 Bundle 'MultipleSearch'
 Bundle 'mhinz/vim-startify'
@@ -282,3 +296,4 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-scripts/mru.vim'
 let MRU_Add_Menu = 0
 Bundle 'osyo-manga/vim-over'
+Bundle 'Rip-Rip/clang_complete'

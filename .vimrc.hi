@@ -14,6 +14,7 @@ hi Include ctermfg=yellow
 hi Define ctermfg=yellow
 hi Macro ctermfg=yellow
 hi LineNr ctermfg=blue
+hi WarningMsg ctermfg=white ctermbg=red
 
 "
 " default syntax highlight
