@@ -17,8 +17,8 @@ nnoremap <C-W>C :cclose<CR>
 nnoremap <Leader>c :set cursorcolumn!<CR>
 nnoremap <C-E> 4<C-E>
 nnoremap <C-Y> 4<C-Y>
-nnoremap <C-j> 8<c-e>
-nnoremap <C-K> 8<c-y>
+"nnoremap <C-j> 8<c-e>
+"nnoremap <C-K> 8<c-y>
 nnoremap <c-_>r :reg<cr>
 nnoremap <leader>C : <c-r><c-w><Home>
 "nnoremap + :let @t=@/<cr>:let @/='[A-Z]'<cr>n:let @/=@t<cr>
@@ -50,13 +50,8 @@ noremap <leader>r :%s/<c-r><c-w>/
 noremap <leader>lm :REefmMK log<cr>
 noremap <leader>s :SvnGetStat 
 
-" unite
-noremap <space>uf :Unite file<cr>
-noremap <space>ul :Unite line<cr>
-noremap <space>ur :Unite file_mru<cr>
-
-vnoremap <C-J> 4j
-vnoremap <C-K> 4k
+vnoremap <C-n> 4j
+vnoremap <C-p> 4k
 vnoremap [[ :<c-u>let @t=@/<cr>:let @/='{'<cr>N:let @/=@t<cr>mv`>V`v
 vnoremap ]] :<c-u>let @t=@/<cr>:let @/='}'<cr>`>n:let @/=@t<cr>mv`<V`v
 vnoremap <leader>C y: <c-r>"<Home>
@@ -108,6 +103,15 @@ nnoremap <silent> <c-t>o :CxxtagsListOverride<CR>
 nnoremap <silent> <c-t>O :CxxtagsListOverriden<CR>
 nnoremap <silent> <c-t>t :CxxtagsListTypeInfo<CR>
 nnoremap <silent> <c-t>u :CxxtagsUpdateDbFile<CR>
+
+nnoremap <silent> <space>d :CxxtagsOpenDecl<CR>
+nnoremap <silent> <space>r :CxxtagsListRefs<CR>
+nnoremap <silent> <space>D :CxxtagsOpenDef<CR>
+nnoremap <silent> <space>q :CxxtagsCloseMsgBuf<CR>
+nnoremap <silent> <space>o :CxxtagsListOverride<CR>
+nnoremap <silent> <space>O :CxxtagsListOverriden<CR>
+nnoremap <silent> <space>t :CxxtagsListTypeInfo<CR>
+nnoremap <silent> <space>u :CxxtagsUpdateDbFile<CR>
 
 "
 " ctrlp
@@ -187,8 +191,12 @@ nnoremap zm :call g:RedirCommand("marks")<cr>
 nnoremap zr :call g:RedirCommand("reg")<cr>
 nnoremap zc :call g:RedirCloseBuf()<cr>
 
+nnoremap <space>f :let @0="+" . line(".") . " " . expand("%:p")<cr>
+nnoremap <space>g :args <c-r>"<cr>
+
 nnoremap mm :marks<cr>
 nnoremap ml :doautocmd User<cr>
 
+" unite
 nnoremap <c-u>u :Unite<cr>
 nnoremap <c-u>f :Unite file_mru<cr>
