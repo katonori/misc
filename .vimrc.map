@@ -196,6 +196,7 @@ nnoremap <space>g :args <c-r>"<cr>
 
 nnoremap mm :marks<cr>
 nnoremap ml :doautocmd User<cr>
+nnoremap <space>c :ccl<cr>:copen 50<cr>
 
 " unite
 nnoremap <c-u>u :Unite<cr>

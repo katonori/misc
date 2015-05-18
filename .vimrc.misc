@@ -263,6 +263,9 @@ let g:clang_exec='clang'
 let g:clang_user_options='-I/usr/include'
 let g:clang_library_path='/usr/lib/llvm-3.4/lib/'
 
+let g:errorformat="%*[^\"]\"%f\"%*\D%l: %m,\"%f\"%*\D%l: %m,%-G%f:%l: (Each undeclared identifier is reported only once,%-G%f:%l: for each function it appears in.),%-GIn file included from %f:%l:%c:,%-GIn file included from %f:%l:%c\,,%-GIn file included from %f:%l:%c,%-GIn file included from %f:%l,%-G%*[ ]from %f:%l:%c,%-G%*[ ]from %f:%l:,%-G%*[ ]from %f:%l\,,%-G%*[ ]from %f:%l,%f:%l:%c:%m,%f(%l) :%m,%f:%l:%m,\"%f\"\, line %l%*\D%c%*[^ ] %m,%D%*\a[%*\d]: Entering directory %*[`']%f',%X%*\a[%*\d]: Leaving directory %*[`']%f',%D%*\a: Entering directory %*[`']%f',%X%*\a: Leaving directory %*[` ']%f',%DMaking %*\a in %f,%f|%l| %m"
+let &makeprg="make -j " . system('cat /proc/cpuinfo | grep "core id" | wc -l | tr -d "\r" | tr -d "\n"')
+
 "
 " Vundle
 "
@@ -290,10 +293,7 @@ Bundle 'tomtom/quickfixsigns_vim'
 let g:quickfixsigns_events = ['BufReadPost', 'BufEnter', 'CursorHold', 'CursorHoldI', 'InsertLeave', 'InsertEnter', 'User']
 Bundle 'Shougo/neomru.vim'
 Bundle 'MultipleSearch'
-Bundle 'mhinz/vim-startify'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'vim-scripts/mru.vim'
-let MRU_Add_Menu = 0
 Bundle 'osyo-manga/vim-over'
 Bundle 'Rip-Rip/clang_complete'
