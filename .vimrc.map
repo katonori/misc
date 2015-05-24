@@ -10,8 +10,6 @@ nnoremap <space>p :prev<CR>
 nnoremap <space>l $
 nnoremap <space>h ^
 nnoremap * :Search \<<c-r><c-w>\><cr>
-"nnoremap gn :cnext<CR>
-"nnoremap gp :cprev<CR>
 nnoremap <Leader><C-M> :make<CR>
 nnoremap <C-W>C :cclose<CR>
 nnoremap <Leader>c :set cursorcolumn!<CR>
@@ -27,6 +25,8 @@ nnoremap <leader>y :call writefile(split(@@, '\n'), $HOME . "/yank.txt")<cr>
 nnoremap <leader>p :read $HOME/yank.txt<cr>
 "nnoremap zm :PosListAdd<CR>
 "nnoremap zl :PosListShow<CR>:QuickfixsignsEnable<cr>
+nnoremap cn :cnext<CR>
+nnoremap cp :cprev<CR>
 nnoremap zn :cnext<cr>
 nnoremap zp :cprev<cr>
 nnoremap <space>d :silent execute("!echo 'cd " . expand("%:p:h") . "' >" . "~/.vimrc.cwd")<cr><c-l>
@@ -112,6 +112,7 @@ nnoremap <silent> <space>o :CxxtagsListOverride<CR>
 nnoremap <silent> <space>O :CxxtagsListOverriden<CR>
 nnoremap <silent> <space>t :CxxtagsListTypeInfo<CR>
 nnoremap <silent> <space>u :CxxtagsUpdateDbFile<CR>
+nnoremap <silent> <space>i :CxxtagsOpenIncludedFile<CR>
 
 "
 " ctrlp
