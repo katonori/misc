@@ -1,6 +1,7 @@
-PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}:%l: %{\e[1;33m%}%~%{\e[m%}\n%# '
+PROMPT=$'%{\e[31m%}%n%{\e[m%}@%{\e[32m%}%m%{\e[m%}:${vcs_info_msg_0_}: %{\e[1;33m%}%~%{\e[m%}\n%# '
 export EDITOR='vim'
 export PATH=~/bin:~/utils/:${PATH}
+export TERM=xterm-256color
 
 bindkey -e
 #bindkey "^G"
@@ -57,15 +58,15 @@ function v()
         LINE=""
     fi
     #echo vim "$LINE" "$ARGS"
-    vim $LINE $ARGS
+    nvim $LINE $ARGS
 }
 
 alias lv='lv -c'
 alias ssh='ssh -Y'
-alias vimps="vim -c \":new | :wincmd o | :PsThisBuffer\""
-alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
+alias vimps="nvim -c \":new | :wincmd o | :PsThisBuffer\""
+alias vimgit="nvim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vg="vimgit"
-alias vimbin='vim -c ":BinEdit'
+alias vimbin='nvim -c ":BinEdit'
 alias parallel='parallel --gnu'
 alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
@@ -98,7 +99,7 @@ fi
 
 function gyclewn()
 {
-  \pyclewn -e vim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
+  \pyclewn -e nvim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
 }
 
 #
@@ -168,3 +169,14 @@ function rgrep()
 #{
 #    echo -ne "\033k$(basename $(tty)|sed 's/^tty//'):$(pwd|tail -c 20)\033\\"
 #}
+
+# vcs_infoロード    
+autoload -Uz vcs_info    
+# PROMPT変数内で変数参照する    
+setopt prompt_subst    
+
+# vcsの表示    
+zstyle ':vcs_info:*' formats '%s|%F{green}%b%f'    
+zstyle ':vcs_info:*' actionformats '%s|%F{green}%b%f(%F{red}%a%f)'    
+# プロンプト表示直前にvcs_info呼び出し    
+precmd() { vcs_info }    

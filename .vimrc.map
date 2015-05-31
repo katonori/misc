@@ -188,17 +188,15 @@ function! g:RedirCloseBuf()
     endif
 endfunction
 
-nnoremap zm :call g:RedirCommand("marks")<cr>
-nnoremap zr :call g:RedirCommand("reg")<cr>
-nnoremap zc :call g:RedirCloseBuf()<cr>
+nnoremap mm :marks<cr>
+nnoremap mr :reg<cr>
 
 nnoremap <space>f :let @0="+" . line(".") . " " . expand("%:p")<cr>
 nnoremap <space>g :args <c-r>"<cr>
 
-nnoremap mm :marks<cr>
 nnoremap ml :doautocmd User<cr>
 nnoremap <space>c :ccl<cr>:copen 50<cr>
 
 " unite
-nnoremap <c-u>u :Unite<cr>
-nnoremap <c-u>f :Unite file_mru<cr>
+nnoremap Uu :Unite<cr>
+nnoremap Uf :Unite file_mru<cr>

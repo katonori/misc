@@ -21,6 +21,8 @@ set smartcase
 set smarttab
 set timeoutlen=1000
 set directory=~/vim_swap
+set foldmethod=syntax
+set foldlevel=10
 
 if has('persistent_undo')
     set undodir=~/.vim/undo
@@ -88,9 +90,6 @@ let g:pymode_folding = 0
 let g:pymode_lint_ignore = "E501,E226,E225,E228"
 let g:pymode_lint_write = 0
 
-" hier
-execute "highlight ucurl_my None"
-let g:hier_highlight_group_qf = "ucurl_my"
 
 " ps mode
 if stridx(system("uname -a "), "Linux") != -1
@@ -126,6 +125,9 @@ autocmd FileType cpp call s:UpdatePathList() | call s:UpdateBuildOpt()
 
 command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
+let g:CXXTAGS_UseNeomake = 1
+
+autocmd BufWritePost *.{c,cpp,h,hpp} :CxxtagsSubmitUpdate
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -297,3 +299,4 @@ Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'osyo-manga/vim-over'
 Bundle 'Rip-Rip/clang_complete'
+Bundle 'benekastah/neomake'
