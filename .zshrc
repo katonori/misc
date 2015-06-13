@@ -180,3 +180,7 @@ zstyle ':vcs_info:*' formats '%s|%F{green}%b%f'
 zstyle ':vcs_info:*' actionformats '%s|%F{green}%b%f(%F{red}%a%f)'    
 # プロンプト表示直前にvcs_info呼び出し    
 precmd() { vcs_info }    
+
+# keychain
+keychain $HOME/.ssh/id_rsa
+source $HOME/.keychain/`uname -n`-sh
