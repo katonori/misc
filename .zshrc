@@ -58,15 +58,15 @@ function v()
         LINE=""
     fi
     #echo vim "$LINE" "$ARGS"
-    nvim $LINE $ARGS
+    vim $LINE $ARGS
 }
 
 alias lv='lv -c'
 alias ssh='ssh -Y'
-alias vimps="nvim -c \":new | :wincmd o | :PsThisBuffer\""
-alias vimgit="nvim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
+alias vimps="vim -c \":new | :wincmd o | :PsThisBuffer\""
+alias vimgit="vim -c \":call fugitive#detect(expand('%:p')) | :Gstatus\""
 alias vg="vimgit"
-alias vimbin='nvim -c ":BinEdit'
+alias vimbin='vim -c ":BinEdit'
 alias parallel='parallel --gnu'
 alias Kill='kill -9'
 alias javac='javac -J-Dfile.encoding=UTF-8'
@@ -99,7 +99,7 @@ fi
 
 function gyclewn()
 {
-  \pyclewn -e nvim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
+  \pyclewn -e vim --cargs "-S ~/misc/.pyclewn.vim" --args "--args $*"
 }
 
 #
