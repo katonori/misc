@@ -9,7 +9,7 @@ set laststatus=2
 set hlsearch
 set encoding=utf-8
 set ruler
-set number
+set nonumber
 set statusline=%f%m%r%h%w\ [%{&fenc}][%{&ff}]%y%6l,%-6c[%p%%(%l)]
 set cursorline
 set cursorcolumn
@@ -116,106 +116,11 @@ vim.command('let &path="' + ",".join(oldList) + '"')
 EOF
 endfunction
 
-function! s:UpdateBuildOpt()
-    "let g:clang_user_options=system("cpath_mgr -b " . expand("%:p"))
-endfunction
-
-autocmd FileType c call s:UpdatePathList() | call s:UpdateBuildOpt()
-autocmd FileType cpp call s:UpdatePathList() | call s:UpdateBuildOpt()
-
 command! -nargs=0 CxxtagsInit :let g:CXXTAGS_DatabaseDir=fnamemodify(b:git_dir, ":h") . "/_db"
 autocmd FileType * setlocal formatoptions-=ro
 let g:CXXTAGS_UseNeomake = 1
 
-autocmd BufWritePost *.{c,cpp,h,hpp} :CxxtagsSubmitUpdate
-
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 5
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
- " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Select with <TAB>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-let g:neocomplcache_ctags_arguments_list = {
-  \ 'perl' : '-R -h ".pm"'
-  \ }
-
-"et g:neocomplcache_snippets_dir = "~/.vim/snippets"
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default'    : '',
-    \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
-    \ 'c'          : $HOME . '/.vim/dict/c.dict',
-    \ 'cpp'        : $HOME . '/.vim/dict/c.dict'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" for snippets
-imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
 set completeopt=longest,menuone
-
-"==========================================
-"neocomplete.vim
-"==========================================
-"use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '¥*ku¥*'
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '¥h¥w*'
-" Plugin key-mappings.
-inoremap <expr><C-g>  neocomplete#undo_completion()
-inoremap <expr><C-l>  neocomplete#complete_common_string()
-
-"
-" neosnippets
-"
-" Plugin key-mappings.
-imap <c-k> <Plug>(neosnippet_expand_or_jump)
-smap <c-k> <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-           \ "\<Plug>(neosnippet_expand_or_jump)"
-           \ : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-           \ "\<Plug>(neosnippet_expand_or_jump)"
-           \: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/.vim/snippets'
-let g:neosnippet#disable_runtime_snippets = { "_": 1, }
 
 let g:Gtags_No_Auto_Jump=1
 
@@ -256,15 +161,6 @@ let g:switch_custom_definitions =
     \ ]
 nnoremap + :Switch<cr>
 
-"
-" clang_complete
-"
-let g:clang_complete_auto=0
-let g:clang_use_library=1
-let g:clang_exec='clang'
-let g:clang_user_options='-I/usr/include'
-let g:clang_library_path='/usr/lib/llvm-3.4/lib/'
-
 let g:errorformat="%*[^\"]\"%f\"%*\D%l: %m,\"%f\"%*\D%l: %m,%-G%f:%l: (Each undeclared identifier is reported only once,%-G%f:%l: for each function it appears in.),%-GIn file included from %f:%l:%c:,%-GIn file included from %f:%l:%c\,,%-GIn file included from %f:%l:%c,%-GIn file included from %f:%l,%-G%*[ ]from %f:%l:%c,%-G%*[ ]from %f:%l:,%-G%*[ ]from %f:%l\,,%-G%*[ ]from %f:%l,%f:%l:%c:%m,%f(%l) :%m,%f:%l:%m,\"%f\"\, line %l%*\D%c%*[^ ] %m,%D%*\a[%*\d]: Entering directory %*[`']%f',%X%*\a[%*\d]: Leaving directory %*[`']%f',%D%*\a: Entering directory %*[`']%f',%X%*\a: Leaving directory %*[` ']%f',%DMaking %*\a in %f,%f|%l| %m"
 let &makeprg="make -j " . system('cat /proc/cpuinfo | grep "core id" | wc -l | tr -d "\r" | tr -d "\n"')
 
@@ -277,19 +173,14 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'katonori/BinEdit.vim'
 Bundle 'katonori/cxxtags-vim'
 Bundle 'katonori/ps.vim'
-Bundle 'katonori/poslist.vim'
 Bundle 'katonori/regex_efm.vim'
 Bundle 'katonori/vicmake.vim'
-Bundle 'katonori/vimsvn.vim'
+"Bundle 'katonori/vimsvn.vim'
 Bundle 'osyo-manga/vim-textobj-multiblock'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kana/vim-textobj-user'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle "honza/vim-snippets"
-"Bundle 'Shougo/neocomplete'
-"Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet.vim'
-Bundle 'Shougo/neosnippet-snippets'
 Bundle 'Shougo/unite.vim'
 Bundle 'tomtom/quickfixsigns_vim'
 let g:quickfixsigns_events = ['BufReadPost', 'BufEnter', 'CursorHold', 'CursorHoldI', 'InsertLeave', 'InsertEnter', 'User']
@@ -298,6 +189,26 @@ Bundle 'MultipleSearch'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'osyo-manga/vim-over'
-Bundle 'Rip-Rip/clang_complete'
 Bundle 'benekastah/neomake'
 Bundle 'lyuts/vim-rtags'
+
+" Track the engine.
+Bundle 'SirVer/ultisnips'
+
+let g:UltiSnipsSnippetDirectories=[$HOME."/misc/UltiSnips"]
+let g:UltiSnipsListSnippets="<c-x><c-k>"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" yankround.vim {{{
+Bundle 'LeafCage/yankround.vim'
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 50
+"" }}}

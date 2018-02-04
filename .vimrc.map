@@ -90,7 +90,7 @@ nnoremap <C-G>r :Gtags -r <C-R><C-W><CR>
 nnoremap <C-G>d :Gtags <C-R><C-W><CR>
 nnoremap <C-G>g :Gtags -g <C-R><C-W><CR>
 
-nnoremap <leader>c :cclose<cr>
+nnoremap <leader>C :cclose<cr>
 
 "
 " key maps

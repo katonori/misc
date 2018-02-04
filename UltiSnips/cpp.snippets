@@ -1,0 +1,27 @@
+extends c
+
+#
+# halide
+#
+snippet hd "halide debug()"
+debug(${1:0}) << $2 << "\n";
+endsnippet
+
+#
+# STL
+#
+snippet sv "std::vector (v)"
+std::vector<${1:char}> v$0;
+endsnippet
+
+snippet vec "vector (v)"
+vector<${1:char}> v$0;
+endsnippet
+
+snippet sm "std::map (map)"
+std::map<${1:key}, ${2:value}> map$0;
+endsnippet
+
+snippet map "map (map)"
+map<${1:key}, ${2:value}> map$0;
+endsnippet
