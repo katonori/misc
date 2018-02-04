@@ -48,6 +48,8 @@ alias ls="ls -F --color=auto"
 alias l="ls -F --color=auto"
 alias m="make"
 alias p="python"
+alias p2="python2"
+alias p3="python3"
 function v()
 {
     LINE=`echo ${*} | sed 's/.\+:\([0-9]\+\)/\1/g'`
@@ -87,6 +89,7 @@ alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 alias gpom="git push origin master"
 alias tmux="tmux -u"
 alias btar="tar --use-compress-program=pbzip2"
+alias df="df -h"
 
 stty stop undef
 
