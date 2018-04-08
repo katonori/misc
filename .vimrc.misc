@@ -165,6 +165,51 @@ let g:errorformat="%*[^\"]\"%f\"%*\D%l: %m,\"%f\"%*\D%l: %m,%-G%f:%l: (Each unde
 let &makeprg="make -j " . system('cat /proc/cpuinfo | grep "core id" | wc -l | tr -d "\r" | tr -d "\n"')
 
 "
+" Tab settings
+"
+
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" The prefix key.
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+
+map <silent> [Tag]l :tablast<CR>
+map <silent> [Tag]r :tabnext<CR>
+map <silent> [Tag]e :tabprevious<CR>
+map <silent> [Tag]n :tabnew .<CR>
+map <silent> [Tag]c :tabnew .<CR>
+
+"
 " Vundle
 "
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -173,8 +218,8 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'katonori/BinEdit.vim'
 Bundle 'katonori/cxxtags-vim'
 Bundle 'katonori/ps.vim'
-Bundle 'katonori/regex_efm.vim'
-Bundle 'katonori/vicmake.vim'
+"Bundle 'katonori/regex_efm.vim'
+"Bundle 'katonori/vicmake.vim'
 "Bundle 'katonori/vimsvn.vim'
 Bundle 'osyo-manga/vim-textobj-multiblock'
 Bundle 'tpope/vim-fugitive'
@@ -190,7 +235,16 @@ Bundle 'AndrewRadev/switch.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'osyo-manga/vim-over'
 Bundle 'benekastah/neomake'
-Bundle 'lyuts/vim-rtags'
+"Bundle 'lyuts/vim-rtags'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Raimondi/vim_search_objects'
+let NERDTreeShowHidden=1
+let NERDTreeMapOpenInTab='T'
+let NERDTreeMapOpenInTabSilent='<c-t>'
+
+let g:ycm_filetype_blacklist = {}
 
 " Track the engine.
 Bundle 'SirVer/ultisnips'

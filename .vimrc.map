@@ -93,17 +93,8 @@ nnoremap <C-G>g :Gtags -g <C-R><C-W><CR>
 nnoremap <leader>C :cclose<cr>
 
 "
-" key maps
+" cxxtags key maps
 "
-nnoremap <silent> <c-t>d :CxxtagsOpenDecl<CR>
-nnoremap <silent> <c-t>r :CxxtagsListRefs<CR>
-nnoremap <silent> <c-t>D :CxxtagsOpenDef<CR>
-nnoremap <silent> <c-t>q :CxxtagsCloseMsgBuf<CR>
-nnoremap <silent> <c-t>o :CxxtagsListOverride<CR>
-nnoremap <silent> <c-t>O :CxxtagsListOverriden<CR>
-nnoremap <silent> <c-t>t :CxxtagsListTypeInfo<CR>
-nnoremap <silent> <c-t>u :CxxtagsUpdateDbFile<CR>
-
 nnoremap <silent> <space>d :CxxtagsOpenDecl<CR>
 nnoremap <silent> <space>r :CxxtagsListRefs<CR>
 nnoremap <silent> <space>D :CxxtagsOpenDef<CR>
@@ -143,7 +134,9 @@ nmap <space>S <Plug>(easymotion-s2)
 nmap <space>s <Plug>(easymotion-s)
 nmap <space>f <Plug>(easymotion-bd-fl)
 nmap <space>j <Plug>(easymotion-j)
+xmap <space>j <Plug>(easymotion-j)
 nmap <space>k <Plug>(easymotion-k)
+xmap <space>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys='asdghklwertyuiopzxcvbnmfj;'
 
@@ -198,5 +191,11 @@ nnoremap ml :doautocmd User<cr>
 nnoremap <space>c :ccl<cr>:copen 50<cr>
 
 " unite
-nnoremap Uu :Unite<cr>
-nnoremap Uf :Unite file_mru<cr>
+nnoremap Uu :Unite- direction=below<cr>
+nnoremap Uf :Unite -direction=below file_mru<cr>
+nnoremap UF :Unite -direction=below file<cr>
+nnoremap Ul :Unite -direction=below line<cr>
+
+" input mode
+inoremap <c-b> <left>
+inoremap <c-f> <right>
