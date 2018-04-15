@@ -3,6 +3,43 @@ export EDITOR='vim'
 export PATH=~/bin:~/utils/:${PATH}
 export TERM=xterm-256color
 
+source ~/.zplug/init.zsh
+
+zplug "b4b4r07/enhancd"
+zplug "mollifier/anyframe"
+
+zplug load --verbose
+
+#
+# fzf
+#
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find -maxdepth 2 \
+                  -o -type d -o -type l 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+# fe - open folder by explorer
+fe() {
+  local dir
+  dir=$(cdr -l 2> /dev/null | awk '{ print $2 }' | fzf +m) &&
+  cygstart `eval echo $dir`
+}
+
+#
+# cdr
+#
+# cdr, add-zsh-hook を有効にする
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+# cdr の設定
+zstyle ':completion:*' recent-dirs-insert both
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-pushd true
+
 bindkey -e
 #bindkey "^G"
 bindkey "^X^B" backward-word
@@ -37,6 +74,7 @@ setopt magic_equal_subst
 
 zstyle ':completion:*:default' menu select=1
 
+alias r="anyframe-widget-cdr"
 alias c="cd"
 alias b="bg"
 alias c="cd"
@@ -90,14 +128,13 @@ alias gpom="git push origin master"
 alias tmux="tmux -u"
 alias btar="tar --use-compress-program=pbzip2"
 alias df="df -h"
+alias s="source"
 
 stty stop undef
 
 if [ "`uname|grep CYGWIN`" != "" ]; then
     chcp.com 65001
-    alias s="cygstart"
-else
-    alias s="source"
+    alias st="cygstart"
 fi
 
 function gyclewn()
