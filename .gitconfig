@@ -1,0 +1,14 @@
+[alias]
+    lg = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+    lgo = log --oneline --graph --decorate
+    co = checkout
+    d = diff
+    l = log
+    lp = log -p
+    a = add
+    s = status
+    st = status
+    b = branch
+    p = pull
+    cl = clone
+
