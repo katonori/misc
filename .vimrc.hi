@@ -33,3 +33,7 @@ hi Parrenthesis ctermfg=green
 
 hi JpSpace cterm=underline ctermbg=red
 au BufRead,BufNew * match JpSpace /　/
+
+"hi EasyMotionTarget ctermfg=cyan cterm=bold
+hi EasyMotionTarget ctermfg=cyan
+hi EasyMotionTarget2First ctermfg=yellow

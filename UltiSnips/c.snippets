@@ -1,14 +1,140 @@
 #
+# types
+#
+snippet ib "int8_t" w
+int8_t
+endsnippet
+
+snippet ih "int16_t" w
+int16_t
+endsnippet
+
+snippet il "int32_t" w
+int32_t
+endsnippet
+
+snippet ill "int64_t" w
+int64_t
+endsnippet
+
+snippet uib "uint8_t" w
+uint8_t
+endsnippet
+
+snippet uih "uint16_t" w
+uint16_t
+endsnippet
+
+snippet uil "uint32_t" w
+uint32_t
+endsnippet
+
+snippet uill "uint64_t" w
+uint64_t
+endsnippet
+
+snippet co "const" w
+const
+endsnippet
+
+snippet un "unsigned" w
+unsigned
+endsnippet
+
+#
 # fmt
 #
-snippet f "%f" w
+snippet pf "%f" w
 %f
 endsnippet
 
-snippet d "%d" w
+snippet pd "%d" w
 %d
 endsnippet
 
-snippet s "%s" w
+snippet ps "%s" w
 %s
 endsnippet
+
+snippet px "0x%x" w
+0x%x
+endsnippet
+
+#
+# other
+#
+snippet an "&" w
+&
+endsnippet
+
+snippet aa "&&" w
+&& 
+endsnippet
+
+snippet or "|" w
+|
+endsnippet
+
+snippet oo "||" w
+|| 
+endsnippet
+
+snippet #e "#endif" w
+#endif
+endsnippet
+
+snippet #i "#if 0" w
+#if 0
+endsnippet
+
+snippet /* "/**/" w
+/* $1 */
+endsnippet
+
+snippet sb "soft_break()" w
+soft_break(1);
+endsnippet
+
+snippet el "else" w
+else {
+    $1
+}
+endsnippet
+
+snippet if
+if(${1:true}) {
+    ${0:${VISUAL}}
+}
+endsnippet
+
+snippet ifh "if half"
+if(${1:true}) {
+endsnippet
+
+snippet ife
+if(${1:true}) {
+    ${2:${VISUAL}}
+} else {
+    ${0}
+}
+endsnippet
+
+# for
+snippet for
+for(int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+    ${4}
+}
+endsnippet
+
+snippet forh "for half"
+for(int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+endsnippet
+
+snippet spr "saprintf()" w
+saprintf("$1\n"$2);
+endsnippet
+
+snippet pr "printf()" w
+printf("$1\n"$2);
+endsnippet
+

@@ -10,9 +10,9 @@ set hlsearch
 set encoding=utf-8
 set ruler
 set nonumber
-set statusline=%f%m%r%h%w\ [%{&fenc}][%{&ff}]%y%6l,%-6c[%p%%(%l)]
-set cursorline
-set cursorcolumn
+set statusline=%f:%l(%L)\ %m%r%h%w\ [%{&fenc}][%{&ff}]%y%6l,%-6c[%p%%(%l)]
+"set cursorline
+"set cursorcolumn
 set fileformats=unix,dos,mac
 set grepprg=mgrep
 set nf="hex"
@@ -21,60 +21,18 @@ set smartcase
 set smarttab
 set timeoutlen=1000
 set directory=~/vim_swap
-set foldmethod=syntax
+"set foldmethod=syntax
+set foldmethod=marker
 set foldlevel=10
+
+set guioptions=M
+set filetype=off
 
 if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
 endif
 
-" 文字コードの自動認識
-if has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-  " iconvがeucJP-msに対応しているかをチェック
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'eucjp-ms'
-    let s:enc_jis = 'iso-2022-jp-3'
-  " iconvがJISX0213に対応しているかをチェック
-  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-  " fileencodingsを構築
-  if &encoding ==# 'utf-8'
-    let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-    let &fileencodings = &fileencodings .','. s:fileencodings_default
-    unlet s:fileencodings_default
-  else
-    let &fileencodings = &fileencodings .','. s:enc_jis
-    set fileencodings+=utf-8,ucs-2le,ucs-2
-    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-      set fileencodings+=cp932
-      set fileencodings-=euc-jp
-      set fileencodings-=euc-jisx0213
-      set fileencodings-=eucjp-ms
-      let &encoding = s:enc_euc
-      let &fileencoding = s:enc_euc
-    else
-      let &fileencodings = &fileencodings .','. s:enc_euc
-    endif
-  endif
-  " 定数を処分
-  unlet s:enc_euc
-  unlet s:enc_jis
-endif
-" 日本語を含まない場合は fileencoding に encoding を使うようにする
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
 " □とか○の文字があってもカーソル位置がずれないようにする
 if exists('&ambiwidth')
   set ambiwidth=double
@@ -90,7 +48,6 @@ let g:pymode_folding = 0
 let g:pymode_lint_ignore = "E501,E226,E225,E228"
 let g:pymode_lint_write = 0
 
-
 " ps mode
 if stridx(system("uname -a "), "Linux") != -1
     let g:PS_PsCmd = "ps axuf"
@@ -102,6 +59,8 @@ let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 
 " md preview
 autocmd FileType markdown set makeprg=pandoc\ -r\ markdown\ -t\ html\ -c\ ~/devel/css/markdown.css\ %\ -o\ /tmp/md.html\ &&\ open\ /tmp/md.html
+autocmd FileType log set makeprg=cat\ %
+autocmd FileType text set makeprg=cat\ %
 
 " manageg path list
 function! s:UpdatePathList()
@@ -127,7 +86,7 @@ let g:Gtags_No_Auto_Jump=1
 "
 " easymotion
 "
-let g:EasyMotion_keys = 'ASDFJKLWERIOPGHZXCVNM;'
+let g:EasyMotion_keys = 'asdfjklweriopghzxcvn'
 " Show target key with upper case to improve readability
 let g:EasyMotion_use_upper = 1
 " Jump to first match with enter & space
@@ -206,8 +165,15 @@ endfor
 map <silent> [Tag]l :tablast<CR>
 map <silent> [Tag]r :tabnext<CR>
 map <silent> [Tag]e :tabprevious<CR>
-map <silent> [Tag]n :tabnew .<CR>
 map <silent> [Tag]c :tabnew .<CR>
+map <silent> [Tag]n :tabnew .<CR>
+map <silent> [Tag]gf <c-w>gf
+
+"
+" filetype
+"
+autocmd BufRead,BufNewFile *.log setfiletype log
+autocmd BufRead,BufNewFile log setfiletype log
 
 "
 " Vundle
@@ -218,15 +184,14 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'katonori/BinEdit.vim'
 Bundle 'katonori/cxxtags-vim'
 Bundle 'katonori/ps.vim'
-"Bundle 'katonori/regex_efm.vim'
-"Bundle 'katonori/vicmake.vim'
-"Bundle 'katonori/vimsvn.vim'
 Bundle 'osyo-manga/vim-textobj-multiblock'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kana/vim-textobj-user'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle "honza/vim-snippets"
 Bundle 'Shougo/unite.vim'
+let g:unite_source_grep_max_candidates = 200
+let g:unite_source_rec_find_args=["-maxdepth=2"]
 Bundle 'tomtom/quickfixsigns_vim'
 let g:quickfixsigns_events = ['BufReadPost', 'BufEnter', 'CursorHold', 'CursorHoldI', 'InsertLeave', 'InsertEnter', 'User']
 Bundle 'Shougo/neomru.vim'
@@ -236,22 +201,25 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'osyo-manga/vim-over'
 Bundle 'benekastah/neomake'
 "Bundle 'lyuts/vim-rtags'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Raimondi/vim_search_objects'
-let NERDTreeShowHidden=1
-let NERDTreeMapOpenInTab='T'
-let NERDTreeMapOpenInTabSilent='<c-t>'
-
+"Bundle 'Valloric/YouCompleteMe'
 let g:ycm_filetype_blacklist = {}
+Bundle 'tpope/vim-surround'
+Bundle 'gregsexton/gitv'
+Bundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Bundle 'junegunn/fzf.vim'
+let g:fzf_layout = { 'window': 'bel split' }
+Bundle 'Raimondi/vim_search_objects'
+Bundle 'simeji/winresizer'
+let g:winresizer_vert_resize = 1
+let g:winresizer_horiz_resize = 1
+let g:winresizer_start_key = '<c-x><c-e>'
 
 " Track the engine.
 Bundle 'SirVer/ultisnips'
 
 let g:UltiSnipsSnippetDirectories=[$HOME."/misc/UltiSnips"]
-let g:UltiSnipsListSnippets="<c-x><c-k>"
-let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsListSnippets="<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
@@ -266,3 +234,5 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
 "" }}}
+
+Bundle 'jreybert/vimagit'
