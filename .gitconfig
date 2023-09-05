@@ -1,14 +1,27 @@
+[user]
+    email = katonori.d@gmail.com
+    name = katonori
 [alias]
-    lg = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-    lgo = log --oneline --graph --decorate
+    lg      = log --decorate --graph --date-order -C -M --pretty=format:\"%C(cyan)<%h> %ad [%an] %Cgreen%d%Creset %C(yellow)%s%Creset%n%-b\" --date=short
+    lgs     = log --decorate --graph --date-order -C -M --pretty=format:\"%C(cyan)<%h> %ad [%an] %Cgreen%d%Creset %C(yellow)%s%Creset%n%-b\" --date=short --stat
+    lga     = log --decorate --graph --date-order -C -M --pretty=format:\"%C(cyan)<%h> %ad [%an] %Cgreen%d%Creset %C(yellow)%s%Creset%n%-b\" --date=short --all
+    slg     = log --decorate --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %C(yellow)%s\" --date=short
+    slgs    = log --decorate --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %C(yellow)%s\" --date=short --stat
+    slga    = log --decorate --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --date=short --all
     co = checkout
     d = diff
-    l = log
+    l = log --color
     lp = log -p
     a = add
-    s = status
     st = status
     b = branch
     p = pull
-    cl = clone
-
+    cl = clone --recursive
+    cls = clone --recursive --depth 1
+    chp = cherry-pick
+    root = rev-parse --show-toplevel
+    re = remote
+[core]
+  pager = env LESSCHARSET=utf-8 less -+F -m -R
+[log]
+    graphColors = white,green,yellow,cyan,magenta
