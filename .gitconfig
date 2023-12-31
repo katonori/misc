@@ -25,3 +25,7 @@
   pager = env LESSCHARSET=utf-8 less -+F -m -R
 [log]
     graphColors = white,green,yellow,cyan,magenta
+[rebase]
+	autosquash = true
+[pull]
+    rebase = false
