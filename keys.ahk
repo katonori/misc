@@ -196,11 +196,6 @@ Insert:: Return
 ^h:: Send,{BS}
 ^M:: SendInput, {Enter}
 +Esc:: SendInput, {``}
-+^s:: SendInput, ^!{s}
-#Esc:: SendInput, {Enter}
-
-+^h:: SendInput, ^!{s}
-+^f:: SendInput, ^!{s}
 
 ;;;
 ;;; date
@@ -220,16 +215,11 @@ FormatTime,TimeString,,yyyy-MM-dd
 Send,%TimeString%
 Return
 
-!^g::
-!g::
-^+g::
+<^g::
     GetNextKeyAndRunCmd()
     return
 
-!^w::
-!w::
-+^w::
-+^u::
+<^w::
     GetNextKeyAndResizeWindow()
     return
 
@@ -272,7 +262,6 @@ FocusWindow()
     return
 }
 !^f::
-!f::
     FocusWindow()
     return
 
@@ -334,65 +323,6 @@ XButton2::
     return
 
 ;;;;;;;;;;;;;;;
-;;;; RAlt
-;;;;;;;;;;;;;;;
-vka5 & s:: SendInput, {Down 5}
-vka5 & w:: SendInput, {Up 5}
-vka5 & a:: SendInput, {Left 5}
-vka5 & d:: SendInput, {Right 5}
-
-;;;;;;;;;;;;;;;
-;;;; RCtrl (mapped to LAlt)
-;;;;;;;;;;;;;;;
-vka3 & c:: SendInput, {Esc}
-
-vka3 & n:: MoveKeyCursor("d")
-vka3 & p:: MoveKeyCursor("u")
-vka3 & b:: MoveKeyCursor("l")
-vka3 & f:: MoveKeyCursor("r")
-vka3 & e:: MoveKeyCursor("e")
-vka3 & q:: MoveKeyCursor("h")
-
-vka3 & w:: MoveKeyCursor("u")
-vka3 & s:: MoveKeyCursor("d")
-vka3 & a:: MoveKeyCursor("l")
-vka3 & d:: MoveKeyCursor("r")
-
-vka3 & x:: SendInput, {Del}
-vka3 & h:: SendInput, {BS}
-
-vka3 & g:: GetNextKeyAndRunCmd()
-
-vka3 & v:: SendInput, {Shift Down}{Insert}{Shift Up}
-vka3 & Down::   ExtendWindow(0, 100)
-vka3 & Up::     ExtendWindow(0, -100)
-vka3 & Right::  ExtendWindow(100, 0)
-vka3 & Left::   ExtendWindow(-100, 0)
-
-vka3 & r:: IME_SET(1)
-vka3 & t:: IME_SET(0)
-vka3 & Space:: IME_SET(1)
-vka3 & j:: IME_SET(1)
-vka3 & k:: IME_SET(0)
-vka3 & 1:: IME_SET(0)
-vka3 & 2:: IME_SET(1)
-
-vka3 & Tab:: 
-    AltTabMenu := true
-    If GetKeyState("Shift","P")
-        Send {Alt Down}{Shift Down}{Tab}
-    else
-        Send {Alt Down}{Tab}
-    return
-
-~*vka3 Up::
-    If (AltTabMenu){
-       Send {Shift Up}{Alt Up}
-       AltTabMenu := false 
-    }
-   return
-
-;;;;;;;;;;;;;;;
 ;;;; 無変換
 ;;;;;;;;;;;;;;;
 vk1d & g:: SendInput, {Esc}
@@ -447,108 +377,45 @@ vk1d & e:: SendInput, {PgDn}
 ;;;;;;;;;;;;;;;
 ;;;; LAlt
 ;;;;;;;;;;;;;;;
-!x:: SendInput, {Del}
-!h:: SendInput, {BS}
-!v:: SendInput, {Shift Down}{Insert}{Shift Up}
-!4:: SendInput, {Alt Down}{F4}{Alt Up}
-!5:: SendInput, {Alt Down}{F5}{Alt Up}
-!Down::   ExtendWindow(0, 200)
-!Up::     ExtendWindow(0, -200)
-!Right::  ExtendWindow(200, 0)
-!Left::   ExtendWindow(-200, 0)
-!u:: SendInput, {_}
-!y:: SendInput, {\}
-!,:: SendInput, {~}
-!/:: SendInput, {\}
-!m:: SendInput, {_}
-!j:: SendInput, {~}
-!k:: SendInput, {Shift down}{End}{Del}{Shift up}
-!s:: SendInput, !^{s}
-*~LAlt::Send {Blind}{vk07}
+;
+; Discard alt input to avoid move the focus on a menubar.
+; Even when the input is discarded (mapped to another key), alt modifier (<!) works
+;
+*~LAlt::Send {Blind}{vk83} ; map to F20 (discard alt input)
 
-;;;;;;;;;;;;;;;
-;;; 変換
-;;;;;;;;;;;;;;;
-vk1c:: SendInput, {Enter}
+<!w:: MoveKeyCursor("u")
+<!s:: MoveKeyCursor("d")
+<!a:: MoveKeyCursor("l")
+<!d:: MoveKeyCursor("r")
+<!e:: MoveKeyCursor("e")
+<!q:: MoveKeyCursor("h")
 
-#IfWinNotActive,ahk_exe mstsc.exe
-;;;;;;;;;;;;;;;
-;;; F13 (vk7c, sc64)
-;;; カタカナ/ひらがな or RAlt にマップ
-;;;;;;;;;;;;;;;
-;vk7c:: IME_SET(1)         ;;; IME on
-vk7c & Space:: IME_SET(0) ;;; IME off
-vk7c & j:: SendInput, {vkf2} ;;; IME on
-vk7c & k:: SendInput, {vk1d} ;;; IME off
-vk7c & u:: SendInput, {F10}{Enter}  ;;; hankaku
-vk7c & o:: SendInput, {F10}{Enter}  ;;; hankaku
-vk7c & l:: SendInput, {F10}{Enter}  ;;; hankaku
-vk7c & i:: SendInput, {F7}     ;;; カタカナ
-vk7c & q:: SendInput, {|}
-vk7c & w:: SendInput, {~}
-; symbols
-vk7c & t:: SendInput, {~}
-;vk7c & b:: SendInput, {``}
-vk7c & b:: SendInput, {\}
-vk7c & p:: SendInput, {|}
-vk7c & a:: SendInput, {+}
-vk7c & y:: SendInput, {\}
-vk7c & m:: SendInput, {_}
-vk7c & n:: SendInput, {&}
-vk7c & s:: SendInput, {_}
-vk7c & f::
-    IME_SET(0)
-    SendInput, {-}
-    Return
-vk7c & 1:: SendInput, {[}
-vk7c & 2:: SendInput, {]}
-vk7c & 3:: SendInput, {{}
-vk7c & 4:: SendInput, {}}
-vk7c & Enter:: SendInput, {Enter}{vkf3sc029}
-vk7c & ,::
-  if GetKeyState("Shift") {
-    SendInput, {`{}
-    return
-  }
-  SendInput, {[}
-  return
-vk7c & .::
-  if GetKeyState("Shift") {
-    SendInput, {`}}
-    return
-  }
-  SendInput, {]}
-  return
-#IfWinNotActive
+<!c:: SendInput, {Esc}
+<!g:: SendInput, {Esc}
+<!x:: SendInput, {Del}
 
 ;;;;;;;;;;;;;;;
 ;;; RAlt
 ;;;;;;;;;;;;;;;
-vka5 & j:: SendInput, {vkf2} ;;; IME on
-vka5 & k:: SendInput, {vk1d} ;;; IME off
-vka5 & u:: SendInput, {F10}{Enter}    ;;; hankaku
-vka5 & o:: SendInput, {F10}{Enter}    ;;; hankaku
-vka5 & l:: SendInput, {F10}{Enter}    ;;; hankaku
-vka5 & i:: SendInput, {F7}{Enter}     ;;; カタカナ
-vka5 & q:: SendInput, {|}
+;
+; Discard alt input to avoid move the focus on a menubar.
+; Even when the input is discarded (mapped to another key), alt modifier (>!) works
+;
+*~RAlt::Send {Blind}{vk84} ; map to F21 (discard alt input)
+
+>!j:: IME_SET(1)
+>!k:: IME_SET(0)
+>!u:: SendInput, {F10}{Enter}    ;;; hankaku
+>!o:: SendInput, {F10}{Enter}    ;;; hankaku
+>!l:: SendInput, {F10}{Enter}    ;;; hankaku
+>!i:: SendInput, {F7}{Enter}     ;;; カタカナ
+>!q:: SendInput, {|}
 ; symbol
-vka5 & t:: SendInput, {~}
-vka5 & b:: SendInput, {``}
-vka5 & p:: SendInput, {|}
-vka5 & n:: SendInput, {&}
-vka5 & Space:: SendInput, {vkf2}
-
-AppsKey & z:: SendInput,{_}
-
-; 上部メニューがアクティブになるのを抑制
-*~RAlt::Send {Blind}{vk07}
-; 左 Alt 空打ちで IME を OFF
-RAlt up::
-    if (A_PriorHotkey == "*~RAlt")
-    {
-        IME_SET(1)
-    }
-    Return
+>!t:: SendInput, {~}
+>!b:: SendInput, {``}
+>!p:: SendInput, {|}
+>!n:: SendInput, {&}
+>!Space:: SendInput, {vkf2}
 
 ;;
 ;; Numpad
@@ -579,12 +446,6 @@ Numpad2:: SendInput, {Down}
 Numpad5:: SendInput, {Up}
 Numpad6:: SendInput, {PgDn}
 Numpad4:: SendInput, {PgUp}
-
-;; for 60% keyboeard
-^+/:: SendInput, {_}
-^+Up:: SendInput, {\}
-+BS:: SendInput, {|}
-^+BS:: SendInput, {\}
 
 ;
 ; Horizontal Scroll
