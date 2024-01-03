@@ -215,10 +215,13 @@ FormatTime,TimeString,,yyyy-MM-dd
 Send,%TimeString%
 Return
 
+#q::
 <^g::
+<^q::
     GetNextKeyAndRunCmd()
     return
 
+#w::
 <^w::
     GetNextKeyAndResizeWindow()
     return
@@ -377,11 +380,7 @@ vk1d & e:: SendInput, {PgDn}
 ;;;;;;;;;;;;;;;
 ;;;; LAlt
 ;;;;;;;;;;;;;;;
-;
-; Discard alt input to avoid move the focus on a menubar.
-; Even when the input is discarded (mapped to another key), alt modifier (<!) works
-;
-*~LAlt::Send {Blind}{vk83} ; map to F20 (discard alt input)
+*~LAlt::Send {Blind}{vk07} ; map to "no mapping" to avoid focusing on the menubar
 
 <!w:: MoveKeyCursor("u")
 <!s:: MoveKeyCursor("d")
@@ -391,17 +390,12 @@ vk1d & e:: SendInput, {PgDn}
 <!q:: MoveKeyCursor("h")
 
 <!c:: SendInput, {Esc}
-<!g:: SendInput, {Esc}
 <!x:: SendInput, {Del}
 
 ;;;;;;;;;;;;;;;
 ;;; RAlt
 ;;;;;;;;;;;;;;;
-;
-; Discard alt input to avoid move the focus on a menubar.
-; Even when the input is discarded (mapped to another key), alt modifier (>!) works
-;
-*~RAlt::Send {Blind}{vk84} ; map to F21 (discard alt input)
+*~RAlt::Send {Blind}{vk07} ; map to "no mapping" to avoid focusing on the menubar
 
 >!j:: IME_SET(1)
 >!k:: IME_SET(0)
