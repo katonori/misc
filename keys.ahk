@@ -449,7 +449,7 @@ vk1d & e::SendInput("{PgDn}")
 ;;;;;;;;;;;;;;;
 ;;;; LAlt
 ;;;;;;;;;;;;;;;
-*~LAlt::Send("{Blind}{vk07}") ; map to "no mapping" to avoid focusing on the menubar
+*~LAlt::Send("{Blind}{vkff}") ; map to "no mapping" to avoid focusing on the menubar
 
 <!w:: MoveKeyCursor("u")
 <!s:: MoveKeyCursor("d")
@@ -465,7 +465,7 @@ vk1d & e::SendInput("{PgDn}")
 ;;;;;;;;;;;;;;;
 ;;; RAlt
 ;;;;;;;;;;;;;;;
-*~RAlt::Send("{Blind}{vk07}") ; map to "no mapping" to avoid focusing on the menubar
+*~RAlt::Send("{Blind}{vkff}") ; map to "no mapping" to avoid focusing on the menubar
 
 >!j:: IME_SET(1)
 >!k:: IME_SET(0)
