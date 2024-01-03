@@ -64,13 +64,23 @@ MoveKeyCursor(direction)
     switch direction {
         case "u":
         {
-            if GetKeyState("Shift", "P")
+            if WinActive("ahk_exe ONENOTE.EXE", ) {
+                ; https://stackoverflow.com/questions/44170454/up-down-key-not-working-in-onenote-2016-for-autohotkey
+                Send("{Ctrl Down}{Up}{Ctrl Up}")
+            }
+            else if GetKeyState("Shift", "P") {
                 SendInput("{Blind}+{Up}")
-            else
+            }
+            else {
                 SendInput("{Up}")
+            }
         }
         case "d":
         {
+            if WinActive("ahk_exe ONENOTE.EXE", ) {
+                ; https://stackoverflow.com/questions/44170454/up-down-key-not-working-in-onenote-2016-for-autohotkey
+                Send("{Ctrl Down}{Down}{Ctrl Up}")
+            }
             If GetKeyState("Shift", "P") {
                 SendInput("{Blind}+{Down}")
             }
