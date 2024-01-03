@@ -468,6 +468,8 @@ vk1d & e::SendInput("{PgDn}")
 <!e:: MoveKeyCursor("e")
 <!q:: MoveKeyCursor("h")
 
+<!k:: Send("{Shift down}{End}{Del}{Shift up}")
+
 <!c::SendInput("{Esc}")
 <!x::SendInput("{Del}")
 <!v::SendInput("{Shift Down}{Insert}{Shift Up}")
